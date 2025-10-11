@@ -8,7 +8,7 @@ import { slideInLeft, slideInRight } from "@/animation/Animation";
 
 export const HomeBanner = () => {
   return (
-    <div className="flex flex-col lg:flex-row items-center gap-5 section-padding-x py-4 lg:py-8 xl:py-12">
+    <div className="flex flex-col lg:flex-row items-center gap-5 section-padding-x py-4 lg:pt-8 xl:pt-12">
       {/* Left Content */}
       <motion.div
         className="w-full lg:w-[50%] flex flex-col items-center lg:items-start text-center lg:text-left"
@@ -42,7 +42,7 @@ export const HomeBanner = () => {
         </Title>
 
         <Link to="/signup">
-          <button className="px-4 py-2 mt-4 rounded-full bg-theme-primary text-white hover:bg-theme-secondary transition duration-300">
+          <button className="px-4 py-2 mt-4 rounded-full bg-theme-primary text-white hover:bg-theme-secondary transition duration-300 cursor-pointer">
             Join Now
           </button>
         </Link>

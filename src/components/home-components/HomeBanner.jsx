@@ -8,7 +8,7 @@ import { slideInLeft, slideInRight } from "@/animation/Animation";
 
 export const HomeBanner = () => {
   return (
-    <div className="flex flex-col lg:flex-row items-center gap-5 section-padding-x section-padding-y">
+    <div className="flex flex-col lg:flex-row items-center gap-5 section-padding-x py-4 lg:py-8 xl:py-12">
       {/* Left Content */}
       <motion.div
         className="w-full lg:w-[50%] flex flex-col items-center lg:items-start text-center lg:text-left"
@@ -42,7 +42,7 @@ export const HomeBanner = () => {
         </Title>
 
         <Link to="/signup">
-          <button className="px-4 py-2 mt-4 rounded-full bg-theme-primary text-white hover:bg-theme-secondary transition duration-300 cursor-pointer">
+          <button className="px-4 py-2 mt-4 rounded-full bg-theme-primary text-white hover:bg-theme-secondary transition duration-300">
             Join Now
           </button>
         </Link>
@@ -56,9 +56,9 @@ export const HomeBanner = () => {
         whileInView="visible"
       >
         <img
-          src={ImageProvider.banner}
+          src={ImageProvider.homebanner}
           alt="KIS School Banner"
-          className="w-[600px] mx-auto lg:w-full rounded-xl bg-none"
+          className="w-[600px] mx-auto lg:w-full object-cover rounded-xl"
         />
       </motion.div>
     </div>

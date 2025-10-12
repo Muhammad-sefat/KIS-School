@@ -1,12 +1,56 @@
-# React + Vite
+# 🎓 KIS School – Learning Management System (LMS)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+KIS School is a modern, responsive Learning Management System (LMS) built to simplify online education for both students and instructors.  
+This platform provides an intuitive interface for managing courses, lessons, enrollments, and payments — all in one place.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Overview
 
-## Expanding the ESLint configuration
+KIS School is designed to streamline the digital learning experience.  
+Students can browse courses, enroll easily, and access lessons with videos and materials, while instructors can manage their course content efficiently.  
+The system is built with a focus on performance, clean UI, and scalability.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## ✨ Key Features
+
+- 🧠 **Course Management:** Create, edit, and organize courses with detailed modules.  
+- 🎥 **Lesson Player:** Watch videos, view notes, and track learning progress.  
+- 💳 **Secure Enrollment:** Integrated form-based enrollment with payment option.  
+- 📱 **Responsive Design:** Works smoothly across desktops, tablets, and mobile devices.  
+- 🔐 **Authentication System:** Custom login/signup flow for students and instructors.  
+- 🧾 **Dashboard:** Manage enrolled courses, progress, and student data.  
+- 📬 **Contact & Support:** Dedicated section for queries and assistance.  
+
+---
+
+## 🛠️ Tech Stack
+
+- **Frontend:** React.js, Tailwind CSS, React Hook Form, Framer Motion  
+- **Backend:** Node.js, Express.js, MongoDB  
+- **State Management:** Redux Toolkit / Context API  
+- **Others:** Axios, React Router DOM, GSAP Animations  
+
+---
+
+## 🌐 Live Preview
+
+👉 https://kis-school.vercel.app
+
+---
+
+## 🧩 Installation & Setup
+
+```bash
+# Clone this repository
+git clone https://github.com/yourusername/kis-school.git
+
+# Navigate to the project folder
+cd kis-school
+
+# Install dependencies
+npm install
+
+# Start the development server
+npm run dev

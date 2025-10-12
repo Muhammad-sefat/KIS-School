@@ -63,7 +63,7 @@ const Navbar = () => {
         {/* Sign Up Button */}
         <div className="hidden md:flex">
           <Link
-            to="/signup"
+            to="/sign-up"
             className="group flex items-center gap-2 px-4 py-2 text-sm lg:text-base font-medium text-white bg-theme-secondary rounded-full hover:bg-white hover:text-theme-primary transition duration-300"
           >
             Sign Up

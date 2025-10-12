@@ -7,7 +7,7 @@ const Footer = () => {
   return (
     <footer className="section-padding-x pb-6 pt-12 bg-theme-primary">
       {/* Top Section */}
-      <div className="flex flex-col lg:flex-row items-start justify-between gap-10">
+      <div className="flex flex-col lg:flex-row items-start justify-between gap-10 border-b border-gray-500 pb-4">
         {/* Logo + About */}
         <div className="w-full lg:w-[40%] flex flex-col items-center lg:items-start text-center lg:text-left">
           <Link
@@ -69,8 +69,8 @@ const Footer = () => {
       </div>
 
       {/* Bottom note */}
-      <div className="mt-10 text-center text-sm text-white">
-        © {new Date().getFullYear()} Bageges Utiles. All rights reserved.
+      <div className="mt-6 text-center text-sm text-white">
+        © {new Date().getFullYear()} KIS School All rights reserved.
       </div>
     </footer>
   );

@@ -6,7 +6,7 @@ const OurRating = () => {
   return (
     <div className="section-padding-x py-6 mb-6 border-t border-b border-dashed grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-12">
       <div className="text-center">
-        <h2 className="text-[28px] md:text-[38px] lg:text-[48px] font-semibold mb-3">
+        <h2 className="text-[28px] md:text-[38px] lg:text-[48px] font-bold mb-3 text-theme-primary">
           <Counter end={15} />
         </h2>
         <Title level="title18" className="text-gray">
@@ -14,7 +14,7 @@ const OurRating = () => {
         </Title>
       </div>
       <div className="text-center">
-        <h2 className="text-[28px] md:text-[38px] lg:text-[48px] font-semibold mb-3">
+        <h2 className="text-[28px] md:text-[38px] lg:text-[48px] font-bold mb-3 text-theme-primary">
           <Counter end={45} />
         </h2>
         <Title level="title18" className="text-gray">
@@ -22,7 +22,7 @@ const OurRating = () => {
         </Title>
       </div>
       <div className="text-center">
-        <h2 className="text-[28px] md:text-[38px] lg:text-[48px] font-semibold mb-3">
+        <h2 className="text-[28px] md:text-[38px] lg:text-[48px] font-bold mb-3 text-theme-primary">
           <Counter end={11} />
         </h2>
         <Title level="title18" className="text-gray">
@@ -30,7 +30,7 @@ const OurRating = () => {
         </Title>
       </div>
       <div className="text-center">
-        <h2 className="text-[28px] md:text-[38px] lg:text-[48px] font-semibold mb-3">
+        <h2 className="text-[28px] md:text-[38px] lg:text-[48px] font-bold mb-3 text-theme-primary">
           <Counter end={125} />
         </h2>
         <Title level="title18" className="text-gray">

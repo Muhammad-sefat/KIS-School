@@ -19,17 +19,17 @@ const Signup = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-blue-50 px-4">
+    <div className="min-h-screen flex items-center justify-center bg-blue-50 px-2 lg:px-4 py-4">
       <div className="w-full max-w-2xl bg-white p-8 rounded-2xl shadow-lg">
         {/* Logo */}
         <div className="flex justify-center mb-6">
           <Link to="/">
-            <img src={ImageProvider.logo} alt="Logo" className="h-20" />
+            <img src={ImageProvider.logo} alt="Logo" className="h-16 lg:h-20" />
           </Link>
         </div>
 
         {/* Heading */}
-        <h2 className="text-3xl font-bold text-center text-gray-800 mb-2 font-merriweather">
+        <h2 className="text-2xl lg:text-3xl font-bold text-center text-gray-800 mb-2 font-merriweather">
           Welcome to KISS
         </h2>
         <p className="text-center text-gray-500 mb-6">

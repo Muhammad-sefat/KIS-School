@@ -6,6 +6,10 @@ import { Link } from "react-router-dom";
 import { ImageProvider } from "../common/ImageProvider";
 import Title from "../common/Title";
 import { Navigation } from "swiper/modules";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 
 const instructors = [
   {
@@ -108,9 +112,41 @@ const instructors = [
 
 const OurInstructor = () => {
   const swiperRef = useRef(null);
+  const sectionRef = useRef(null);
+  const titleRef = useRef(null);
+  const subtitleRef = useRef(null);
+  const cardRef = useRef(null);
+  const buttonRef = useRef(null);
+
+  useGSAP(() => {
+    gsap.from(
+      [
+        titleRef.current,
+        subtitleRef.current,
+        cardRef.current,
+        buttonRef.current,
+      ],
+      {
+        y: 40,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power2.out",
+        delay: 0.6,
+        stagger: 0.1,
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 88%",
+          toggleActions: "play none none none",
+        },
+      }
+    );
+  }, []);
   return (
-    <div className="section-padding-x py-6 lg:py-12 relative">
-      <button className="group flex items-center gap-2 px-3 py-1 text-sm font-medium border border-theme-primary text-theme-secondary hover:bg-theme-secondary hover:text-white hover:border-theme-secondary rounded-full transition-all duration-300 cursor-pointer overflow-hidden">
+    <div ref={sectionRef} className="section-padding-x py-6 lg:py-12 relative">
+      <button
+        ref={buttonRef}
+        className="group flex items-center gap-2 px-3 py-1 text-sm font-medium border border-theme-primary text-theme-secondary hover:bg-theme-secondary hover:text-white hover:border-theme-secondary rounded-full transition-all duration-300 cursor-pointer overflow-hidden"
+      >
         <span className="relative flex items-center gap-2">
           <img
             className="w-[30px] transition-all duration-300 group-hover:translate-x-2"
@@ -122,10 +158,12 @@ const OurInstructor = () => {
           </span>
         </span>
       </button>
-      <Title level="title48" className="mt-2 text-theme-primary">
+      <Title ref={titleRef} level="title48" className="mt-2 text-theme-primary">
         Meet Our Expert Instructor
       </Title>
-      <p className="text-gray mt-1">Learn From Creative Experts</p>
+      <p ref={subtitleRef} className="text-gray mt-1">
+        Learn From Creative Experts
+      </p>
       {/* Custom Arrows */}
       <div className="absolute top-1/2 left-2 xl:left-12 z-10 transform -translate-y-1/2">
         <button
@@ -164,6 +202,7 @@ const OurInstructor = () => {
         }}
         grabCursor={true}
         className="mt-8"
+        ref={cardRef}
       >
         {instructors.map((instructor) => (
           <SwiperSlide key={instructor.id}>

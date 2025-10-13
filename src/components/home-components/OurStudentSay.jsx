@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
@@ -7,6 +7,10 @@ import { MoveLeft, MoveRight, Star } from "lucide-react";
 import { ImageProvider } from "../common/ImageProvider";
 import Title from "../common/Title";
 import { FaRegStarHalfStroke, FaStar } from "react-icons/fa6";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 
 const testimonials = [
   {
@@ -73,16 +77,40 @@ const renderStars = (rating) => {
 };
 
 const OurStudentSay = () => {
+  const sectionRef = useRef(null);
+  const titleRef = useRef(null);
+  const subtitleRef = useRef(null);
+  const cardRef = useRef(null);
+
+  useGSAP(() => {
+    gsap.from([titleRef.current, subtitleRef.current, cardRef.current], {
+      y: 40,
+      opacity: 0,
+      duration: 0.8,
+      ease: "power2.out",
+      delay: 0.6,
+      stagger: 0.1,
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top 88%",
+        toggleActions: "play none none none",
+      },
+    });
+  }, []);
   return (
-    <div className="section-padding-x pb-8 lg:pb-12">
+    <div ref={sectionRef} className="section-padding-x pb-8 lg:pb-12">
       <div className="relative">
         <Title
+          ref={titleRef}
           level="title48"
           className="text-center !font-bold py-4 text-theme-primary"
         >
           What Our Students <br /> Have To Say
         </Title>
-        <p className="text-gray mt-2 w-full md:w-[55%] mx-auto text-center">
+        <p
+          ref={subtitleRef}
+          className="text-gray mt-2 w-full md:w-[55%] mx-auto text-center"
+        >
           Our English learners share their journeys of growth and confidence.
           From improving fluency to mastering grammar, every story inspires us
           to keep creating better learning experiences.
@@ -105,6 +133,7 @@ const OurStudentSay = () => {
             prevEl: ".prev-btn",
           }}
           className="mt-6 lg:mt-8 xl:mt-12"
+          ref={cardRef}
         >
           {testimonials.map((item) => (
             <SwiperSlide key={item.id} className="py-10">

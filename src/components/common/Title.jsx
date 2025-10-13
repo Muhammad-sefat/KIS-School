@@ -2,7 +2,7 @@ import React, { forwardRef } from "react";
 import clsx from "clsx";
 
 const sizeMap = {
-  title80: " text-[44px] sm:text-[54px] xl:text-[80px] font-bold",
+  title80: "text-[34px] sm:text-[44px] lg:text-[54px] xl:text-[80px] font-bold",
   title64: "text-[34px] sm:text-[44px] xl:text-[64px] font-bold",
   title48: "text-2xl md:text-[34px] xl:text-[48px] font-bold",
   title40: "text-xl xl:text-[40px] font-semibold",

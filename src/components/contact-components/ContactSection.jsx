@@ -57,7 +57,7 @@ const ContactSection = () => {
               </div>
             </div>
           </div>
-          <div className="absolute -bottom-80 left-1/2 transform -translate-x-1/2">
+          <div className="hidden md:block absolute -bottom-80 left-1/2 transform -translate-x-1/2">
             <img src={ImageProvider.get} alt="image" />
           </div>
         </div>

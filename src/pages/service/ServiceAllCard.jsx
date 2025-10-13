@@ -1,8 +1,12 @@
 import { ImageProvider } from "@/components/common/ImageProvider";
 import Title from "@/components/common/Title";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
 import { Clock, Star } from "lucide-react";
-import React from "react";
+import React, { useRef } from "react";
 import { Link } from "react-router-dom";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 
 // Common features for all courses
 const baseFeatures = [
@@ -41,32 +45,6 @@ const courses = [
     image: ImageProvider.course1,
     extra: ["Exam Focused Writing", "Model Test with Feedback"],
   },
-  {
-    id: 3,
-    title: "Intermediate English",
-    instructor: "KIS Language Dept.",
-    tag: "College",
-    duration: "100 Days",
-    lessons: "80 Lessons",
-    price: "$159",
-    oldPrice: "$199",
-    rating: 4.9,
-    image: ImageProvider.course2,
-    extra: ["Advanced Grammar", "Spoken Practice + Live Q&A"],
-  },
-  {
-    id: 4,
-    title: "Honours English",
-    instructor: "KIS Language Dept.",
-    tag: "University",
-    duration: "120 Days",
-    lessons: "90 Lessons",
-    price: "$199",
-    oldPrice: "$249",
-    rating: 5.0,
-    image: ImageProvider.course,
-    extra: ["Literature Analysis", "Essay Writing + Research Skills"],
-  },
 ];
 
 const StarRating = ({ rating }) => {
@@ -87,19 +65,45 @@ const StarRating = ({ rating }) => {
 };
 
 const ServiceAllCard = () => {
+  const sectionRef = useRef(null);
+  const titleRef = useRef(null);
+  const subtitleRef = useRef(null);
+  const cardRef = useRef(null);
+
+  useGSAP(() => {
+    gsap.from([titleRef.current, subtitleRef.current, cardRef.current], {
+      y: 40,
+      opacity: 0,
+      duration: 1,
+      ease: "power3.out",
+      delay: 0.6,
+      stagger: 0.4,
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top 90%",
+        toggleActions: "play none none none",
+      },
+    });
+  }, []);
   return (
-    <div className="section-padding-x py-12 bg-[#F9FAFB] relative">
+    <div
+      ref={sectionRef}
+      className="section-padding-x py-12 bg-[#F9FAFB] relative"
+    >
       {/* Section Title */}
       <div className="text-center mb-10">
-        <Title level="title48" className="text-theme-primary">
+        <Title ref={titleRef} level="title48" className="text-theme-primary">
           Master English with Confidence
         </Title>
-        <p className="text-gray-600 mt-2">
+        <p ref={subtitleRef} className="text-gray-600 mt-2">
           Explore our English learning programs tailored for every academic
           level.
         </p>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div
+        ref={cardRef}
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+      >
         {courses.map((course, index) => (
           <div
             key={index}

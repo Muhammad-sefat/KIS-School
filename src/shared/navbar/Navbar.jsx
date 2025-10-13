@@ -106,7 +106,7 @@ const Navbar = () => {
         </nav>
         <div className="px-6 mt-8">
           <Link
-            to="/signup"
+            to="/sign-up"
             onClick={closeMenu}
             className="block text-center bg-theme-secondary py-2 rounded-full font-medium hover:bg-white hover:text-theme-primary transition"
           >

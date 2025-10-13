@@ -19,7 +19,7 @@ export const HomeBanner = () => {
         <img
           src={ImageProvider.light}
           alt="KIS Logo"
-          className="w-[60px] lg:w-[100px]"
+          className="w-[60px] lg:w-[100px] mt-12 lg:mt-0"
         />
 
         <Title level="title80" className="leading-tight text-theme-primary">

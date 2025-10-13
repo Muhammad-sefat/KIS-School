@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { ChevronLeft, ChevronRight, Clock, Star } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -6,6 +6,10 @@ import "swiper/css";
 import { ImageProvider } from "../common/ImageProvider";
 import Title from "../common/Title";
 import { Navigation } from "swiper/modules";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 
 // Common features for all courses
 const baseFeatures = [
@@ -44,32 +48,6 @@ const courses = [
     image: ImageProvider.course1,
     extra: ["Exam Focused Writing", "Model Test with Feedback"],
   },
-  {
-    id: 3,
-    title: "Intermediate English",
-    instructor: "KIS Language Dept.",
-    tag: "College",
-    duration: "100 Days",
-    lessons: "80 Lessons",
-    price: "$159",
-    oldPrice: "$199",
-    rating: 4.9,
-    image: ImageProvider.course2,
-    extra: ["Advanced Grammar", "Spoken Practice + Live Q&A"],
-  },
-  {
-    id: 4,
-    title: "Honours English",
-    instructor: "KIS Language Dept.",
-    tag: "University",
-    duration: "120 Days",
-    lessons: "90 Lessons",
-    price: "$199",
-    oldPrice: "$249",
-    rating: 5.0,
-    image: ImageProvider.course3,
-    extra: ["Literature Analysis", "Essay Writing + Research Skills"],
-  },
 ];
 
 const StarRating = ({ rating }) => {
@@ -90,56 +68,118 @@ const StarRating = ({ rating }) => {
 };
 
 const ServiceCard = () => {
+  const [showArrows, setShowArrows] = useState(false);
   const swiperRef = useRef(null);
+  const sectionRef = useRef(null);
+  const titleRef = useRef(null);
+  const subtitleRef = useRef(null);
+  const slideRefs = useRef([]); // Array to store slide refs
+
+  useGSAP(() => {
+    // Animate title and subtitle
+    gsap.from([titleRef.current, subtitleRef.current], {
+      y: 20,
+      opacity: 0,
+      duration: 0.8,
+      ease: "power2.out",
+      stagger: 0.1,
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top 90%", // Trigger earlier
+        toggleActions: "play none none none",
+      },
+    });
+
+    // Animate individual slides
+    gsap.from(slideRefs.current, {
+      y: 30, // Smaller translation for smoother effect
+      opacity: 0,
+      duration: 0.8,
+      ease: "power2.out",
+      stagger: 0.15, // Stagger slides for a cascading effect
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top 90%",
+        toggleActions: "play none none none",
+      },
+    });
+  }, []);
+
   return (
-    <div className="section-padding-x py-12 bg-[#F9FAFB] relative">
+    <div
+      ref={sectionRef}
+      className="section-padding-x py-12 bg-[#F9FAFB] relative"
+    >
       {/* Section Title */}
       <div className="text-center mb-10">
-        <Title level="title48" className="text-theme-primary">
+        <Title ref={titleRef} level="title48" className="text-theme-primary">
           Master English with Confidence
         </Title>
-        <p className="text-gray-600 mt-2">
+        <p ref={subtitleRef} className="text-gray-600 mt-2">
           Explore our English learning programs tailored for every academic
           level.
         </p>
       </div>
 
       {/* Custom Arrows */}
-      <div className="absolute top-1/2 left-2 xl:left-12 z-10 transform -translate-y-1/2">
-        <button
-          onClick={() => swiperRef.current?.slidePrev()}
-          className="p-2 rounded-full bg-white text-theme-primary border border-custom-primary hover:text-white shadow hover:bg-theme-primary transition duration-300 cursor-pointer"
-        >
-          <ChevronLeft size={24} />
-        </button>
-      </div>
-      <div className="absolute top-1/2 right-2 xl:right-12 z-10 transform -translate-y-1/2">
-        <button
-          onClick={() => swiperRef.current?.slideNext()}
-          className="p-2 rounded-full bg-white text-theme-primary border border-theme-primary hover:text-white shadow hover:bg-theme-primary transition duration-300 cursor-pointer"
-        >
-          <ChevronRight size={24} />
-        </button>
-      </div>
+      {showArrows && (
+        <>
+          <div className="absolute top-1/2 left-2 xl:left-12 z-10 transform -translate-y-1/2">
+            <button
+              onClick={() => swiperRef.current?.slidePrev()}
+              className="p-2 rounded-full bg-white text-theme-primary border border-custom-primary hover:text-white shadow hover:bg-theme-primary transition duration-300 cursor-pointer"
+            >
+              <ChevronLeft size={24} />
+            </button>
+          </div>
+          <div className="absolute top-1/2 right-2 xl:right-12 z-10 transform -translate-y-1/2">
+            <button
+              onClick={() => swiperRef.current?.slideNext()}
+              className="p-2 rounded-full bg-white text-theme-primary border border-theme-primary hover:text-white shadow hover:bg-theme-primary transition duration-300 cursor-pointer"
+            >
+              <ChevronRight size={24} />
+            </button>
+          </div>
+        </>
+      )}
+
       {/* Swiper Section */}
       <Swiper
-        onSwiper={(swiper) => (swiperRef.current = swiper)}
-        loop
+        onSwiper={(swiper) => {
+          swiperRef.current = swiper;
+          const shouldShow = swiper.slides.length > swiper.params.slidesPerView;
+          setShowArrows(shouldShow);
+        }}
+        onResize={(swiper) => {
+          const shouldShow = swiper.slides.length > swiper.params.slidesPerView;
+          setShowArrows(shouldShow);
+        }}
+        loop={courses.length > 3}
         modules={[Navigation]}
         spaceBetween={30}
-        slidesPerView={1}
+        slidesPerView={3}
+        speed={600}
+        touchRatio={1.5}
+        grabCursor={true}
         breakpoints={{
-          640: { slidesPerView: 1 },
-          768: { slidesPerView: 2 },
-          1024: { slidesPerView: 3 },
+          0: { slidesPerView: 1, spaceBetween: 10 },
+          640: { slidesPerView: 1, spaceBetween: 20 },
+          768: { slidesPerView: 2, spaceBetween: 25 },
+          1024: { slidesPerView: 3, spaceBetween: 30 },
         }}
+        className="will-change-transform"
       >
         {courses.map((course, index) => (
-          <SwiperSlide key={index}>
+          <SwiperSlide
+            key={index}
+            ref={(el) => (slideRefs.current[index] = el)}
+          >
             <div className="border rounded-xl bg-white shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden">
               <img
                 src={course.image}
                 alt={course.title}
+                width={400}
+                height={200}
                 className="w-full object-cover hover:scale-105 transition-transform duration-500"
               />
               <div className="p-5 flex flex-col gap-3">
@@ -150,15 +190,11 @@ const ServiceCard = () => {
                   {course.title}
                 </h3>
                 <p className="text-gray-500 text-sm">{course.instructor}</p>
-
-                {/* Common Features */}
                 <ul className="text-gray-700 text-sm list-disc pl-5 mt-1 space-y-1">
                   {baseFeatures.map((f, i) => (
                     <li key={i}>{f}</li>
                   ))}
                 </ul>
-
-                {/* Extra Features */}
                 <div className="mt-1">
                   <p className="text-theme-primary font-medium text-sm">
                     Extra Features:
@@ -169,8 +205,6 @@ const ServiceCard = () => {
                     ))}
                   </ul>
                 </div>
-
-                {/* Course Meta */}
                 <div className="flex justify-between items-center mt-4">
                   <div className="flex items-center gap-2 text-gray-600 text-sm">
                     <Clock size={16} /> <span>{course.duration}</span>
@@ -180,8 +214,6 @@ const ServiceCard = () => {
                     <StarRating rating={course.rating} />
                   </div>
                 </div>
-
-                {/* Pricing */}
                 <div className="flex justify-between items-center mt-3">
                   <div className="flex items-center gap-2">
                     <p className="text-lg font-bold text-green-600">

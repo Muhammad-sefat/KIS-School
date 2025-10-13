@@ -33,7 +33,7 @@ const Footer = () => {
           <Title level="title20" className="!font-bold mb-4 text-white">
             Company
           </Title>
-          <ul className="flex flex-col gap-2 text-white">
+          <ul className="flex flex-col items-center gap-2 text-white">
             <li className="cursor-pointer hover:text-theme-secondary hover:underline transition ease-in-out w-fit">
               <Link to="/about-us">About Us</Link>
             </li>
@@ -51,7 +51,7 @@ const Footer = () => {
           <Title level="title20" className="!font-bold mb-4 text-white">
             Help
           </Title>
-          <ul className="flex flex-col gap-2 text-white">
+          <ul className="flex flex-col items-center gap-2 text-white">
             <li className="cursor-pointer hover:text-theme-secondary hover:underline transition ease-in-out w-fit">
               <Link to="/contact-us">Contact Us</Link>
             </li>

@@ -73,10 +73,9 @@ const ServiceCard = () => {
   const sectionRef = useRef(null);
   const titleRef = useRef(null);
   const subtitleRef = useRef(null);
-  const slideRefs = useRef([]); // Array to store slide refs
+  const slideRefs = useRef([]);
 
   useGSAP(() => {
-    // Animate title and subtitle
     gsap.from([titleRef.current, subtitleRef.current], {
       y: 20,
       opacity: 0,
@@ -85,18 +84,18 @@ const ServiceCard = () => {
       stagger: 0.1,
       scrollTrigger: {
         trigger: sectionRef.current,
-        start: "top 90%", // Trigger earlier
+        start: "top 90%",
         toggleActions: "play none none none",
       },
     });
 
     // Animate individual slides
     gsap.from(slideRefs.current, {
-      y: 30, // Smaller translation for smoother effect
+      y: 30,
       opacity: 0,
       duration: 0.8,
       ease: "power2.out",
-      stagger: 0.15, // Stagger slides for a cascading effect
+      stagger: 0.15,
       scrollTrigger: {
         trigger: sectionRef.current,
         start: "top 90%",
@@ -224,7 +223,9 @@ const ServiceCard = () => {
                     </p>
                   </div>
                   <Link
-                    to="/enroll"
+                    to="https://forms.gle/gDvnNA5KD7V5cdVQ8"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="text-sm px-4 py-2 rounded-full bg-theme-secondary text-white hover:bg-theme-primary transition duration-300"
                   >
                     Enroll Now

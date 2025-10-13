@@ -164,7 +164,9 @@ const ServiceAllCard = () => {
                   </p>
                 </div>
                 <Link
-                  to="/enroll"
+                  to="https://forms.gle/gDvnNA5KD7V5cdVQ8"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-sm px-4 py-2 rounded-full bg-theme-secondary text-white hover:bg-theme-primary transition duration-300"
                 >
                   Enroll Now

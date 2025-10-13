@@ -29,8 +29,8 @@ const Footer = () => {
         </div>
 
         {/* Company Links */}
-        <div className="w-full sm:w-[50%] lg:w-[25%] text-center sm:text-left">
-          <Title level="title20" className="!font-bold mb-4 text-white">
+        <div className="w-full sm:w-[50%] lg:w-[25%] text-center">
+          <Title level="title24" className="!font-bold mb-4 text-white">
             Company
           </Title>
           <ul className="flex flex-col items-center gap-2 text-white">
@@ -47,8 +47,8 @@ const Footer = () => {
         </div>
 
         {/* Help Links */}
-        <div className="w-full sm:w-[50%] lg:w-[25%] text-center sm:text-left">
-          <Title level="title20" className="!font-bold mb-4 text-white">
+        <div className="w-full sm:w-[50%] lg:w-[25%] text-center">
+          <Title level="title24" className="!font-bold mb-4 text-white">
             Help
           </Title>
           <ul className="flex flex-col items-center gap-2 text-white">

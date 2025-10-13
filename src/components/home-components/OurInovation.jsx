@@ -42,7 +42,7 @@ const OurInovation = () => {
             <h4 className="text-lg lg:text-2xl font-semibold">
               Our Phone Number
             </h4>
-            <p>+12124610547</p>
+            <p>01796373902</p>
           </div>
         </div>
       </motion.div>

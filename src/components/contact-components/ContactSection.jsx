@@ -21,7 +21,7 @@ const ContactSection = () => {
       viewport={{ once: true, amount: 0.2 }}
       className="section-padding-x py-20 bg-white dark:bg-slate-900"
     >
-      <div className="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+      <div className="max-w-[1600px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
         {/* LEFT SIDE */}
         <div className="flex flex-col gap-6 relative">
           <h2 className="font-merriweather font-bold text-theme-primary text-3xl md:text-5xl">
@@ -41,7 +41,7 @@ const ContactSection = () => {
               <div>
                 <p className="font-merriweather font-semibold text-xl">Email</p>
                 <p className="text-gray text-sm md:text-base">
-                  support@kisschool.com
+                  contactkeyissuesolvingschool@gmail.com
                 </p>
               </div>
             </div>
@@ -51,9 +51,7 @@ const ContactSection = () => {
                 <p className="font-merriweather font-semibold text-xl">
                   Call Us
                 </p>
-                <p className="text-gray text-sm md:text-base">
-                  +1 212 461 0547
-                </p>
+                <p className="text-gray text-sm md:text-base">01796373902</p>
               </div>
             </div>
           </div>

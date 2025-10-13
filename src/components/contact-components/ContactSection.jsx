@@ -10,7 +10,7 @@ const ContactSection = () => {
 
   const onSubmit = (data) => {
     console.log(data);
-    reset(); // clear form after submission
+    reset();
   };
 
   return (

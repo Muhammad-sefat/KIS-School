@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Link } from "react-router-dom";
-import { Clock, Star } from "lucide-react";
+import { ChevronLeft, ChevronRight, Clock, Star } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { ImageProvider } from "../common/ImageProvider";
 import Title from "../common/Title";
+import { Navigation } from "swiper/modules";
 
 // Common features for all courses
 const baseFeatures = [
@@ -89,8 +90,9 @@ const StarRating = ({ rating }) => {
 };
 
 const ServiceCard = () => {
+  const swiperRef = useRef(null);
   return (
-    <div className="section-padding-x py-12 bg-[#F9FAFB]">
+    <div className="section-padding-x py-12 bg-[#F9FAFB] relative">
       {/* Section Title */}
       <div className="text-center mb-10">
         <Title level="title48" className="text-theme-primary">
@@ -102,9 +104,28 @@ const ServiceCard = () => {
         </p>
       </div>
 
+      {/* Custom Arrows */}
+      <div className="absolute top-1/2 left-2 xl:left-12 z-10 transform -translate-y-1/2">
+        <button
+          onClick={() => swiperRef.current?.slidePrev()}
+          className="p-2 rounded-full bg-white text-theme-primary border border-custom-primary hover:text-white shadow hover:bg-theme-primary transition duration-300 cursor-pointer"
+        >
+          <ChevronLeft size={24} />
+        </button>
+      </div>
+      <div className="absolute top-1/2 right-2 xl:right-12 z-10 transform -translate-y-1/2">
+        <button
+          onClick={() => swiperRef.current?.slideNext()}
+          className="p-2 rounded-full bg-white text-theme-primary border border-theme-primary hover:text-white shadow hover:bg-theme-primary transition duration-300 cursor-pointer"
+        >
+          <ChevronRight size={24} />
+        </button>
+      </div>
       {/* Swiper Section */}
       <Swiper
+        onSwiper={(swiper) => (swiperRef.current = swiper)}
         loop
+        modules={[Navigation]}
         spaceBetween={30}
         slidesPerView={1}
         breakpoints={{
@@ -119,26 +140,26 @@ const ServiceCard = () => {
               <img
                 src={course.image}
                 alt={course.title}
-                className="w-full h-48 object-cover hover:scale-105 transition-transform duration-500"
+                className="w-full object-cover hover:scale-105 transition-transform duration-500"
               />
               <div className="p-5 flex flex-col gap-3">
                 <p className="text-theme-secondary text-sm font-medium uppercase tracking-wide">
                   {course.tag}
                 </p>
-                <h3 className="text-lg font-semibold text-theme-primary leading-snug">
+                <h3 className="text-lg lg:text-2xl font-semibold text-theme-primary leading-snug">
                   {course.title}
                 </h3>
                 <p className="text-gray-500 text-sm">{course.instructor}</p>
 
                 {/* Common Features */}
-                <ul className="text-gray-700 text-sm list-disc pl-5 mt-2 space-y-1">
+                <ul className="text-gray-700 text-sm list-disc pl-5 mt-1 space-y-1">
                   {baseFeatures.map((f, i) => (
                     <li key={i}>{f}</li>
                   ))}
                 </ul>
 
                 {/* Extra Features */}
-                <div className="mt-3">
+                <div className="mt-1">
                   <p className="text-theme-primary font-medium text-sm">
                     Extra Features:
                   </p>
@@ -186,7 +207,7 @@ const ServiceCard = () => {
       {/* View All */}
       <div className="flex justify-center mt-10">
         <Link
-          to="/courses"
+          to="/service"
           className="px-6 py-3 text-sm font-medium rounded-full text-theme-primary border border-theme-primary hover:bg-theme-secondary hover:text-white transition duration-300"
         >
           View All Courses

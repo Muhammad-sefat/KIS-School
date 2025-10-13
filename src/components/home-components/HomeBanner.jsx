@@ -41,7 +41,7 @@ export const HomeBanner = () => {
           </p>
         </Title>
 
-        <Link to="/signup">
+        <Link to="/sign-in">
           <button className="px-4 py-2 mt-4 rounded-full bg-theme-primary text-white hover:bg-theme-secondary transition duration-300 cursor-pointer">
             Join Now
           </button>

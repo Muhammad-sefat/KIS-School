@@ -32,6 +32,9 @@ import accordiann from "../../assets/images/accordiann.jpg";
 import about from "../../assets/images/about.jpg";
 import contact from "../../assets/images/contact.jpg";
 import telephone from "../../assets/images/telephone.jpg";
+import get from "../../assets/images/get.png";
+import email from "../../assets/images/email.png";
+import call from "../../assets/images/call.png";
 
 export const ImageProvider = {
   logo,
@@ -68,4 +71,7 @@ export const ImageProvider = {
   about,
   contact,
   telephone,
+  get,
+  email,
+  call,
 };

@@ -17,7 +17,7 @@ const Footer = () => {
             <img className="w-[60px]" src={ImageProvider.logo} alt="logo" />
             <div className="flex flex-col items-center gap-1 mt-2">
               <Title level="title36" className="!font-bold text-white">
-                KIS School
+                KISS
               </Title>
             </div>
           </Link>
@@ -38,10 +38,10 @@ const Footer = () => {
               <Link to="/about-us">About Us</Link>
             </li>
             <li className="cursor-pointer hover:text-theme-secondary hover:underline transition ease-in-out w-fit">
-              <Link to={"/faqs"}>Our Progress</Link>
+              <Link to={"/service"}>Our Service</Link>
             </li>
             <li className="cursor-pointer hover:text-theme-secondary hover:underline transition ease-in-out w-fit">
-              <Link to="/privacy-policy">Reports</Link>
+              <Link to="/">Reports</Link>
             </li>
           </ul>
         </div>
@@ -53,16 +53,16 @@ const Footer = () => {
           </Title>
           <ul className="flex flex-col gap-2 text-white">
             <li className="cursor-pointer hover:text-theme-secondary hover:underline transition ease-in-out w-fit">
-              <Link to="/signup">Contact Us</Link>
+              <Link to="/contact-us">Contact Us</Link>
             </li>
             <li className="cursor-pointer hover:text-theme-secondary hover:underline transition ease-in-out w-fit">
-              <Link to={"/faq"}>FAQs</Link>
+              <Link to={"/"}>FAQs</Link>
             </li>
             <li className="cursor-pointer hover:text-theme-secondary hover:underline transition ease-in-out w-fit">
-              <Link to="/privacy-policy">Privacy Policy</Link>
+              <Link to="/">Privacy Policy</Link>
             </li>
             <li className="cursor-pointer hover:text-theme-secondary hover:underline transition ease-in-out w-fit">
-              <Link to="/terms-conditions">Terms & Conditions</Link>
+              <Link to="/">Terms & Conditions</Link>
             </li>
           </ul>
         </div>
@@ -70,7 +70,7 @@ const Footer = () => {
 
       {/* Bottom note */}
       <div className="mt-6 text-center text-sm text-white">
-        © {new Date().getFullYear()} KIS School All rights reserved.
+        © {new Date().getFullYear()} KISS All rights reserved.
       </div>
     </footer>
   );

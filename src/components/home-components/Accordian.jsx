@@ -66,7 +66,9 @@ const Accordian = () => {
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
       >
-        <Title level="title48">Frequently Asked Questions</Title>
+        <Title level="title48" className="text-theme-primary">
+          Frequently Asked Questions
+        </Title>
         <p className="text-gray mt-2 w-full md:w-[80%]">
           Have questions? Find quick answers to common inquiries about our
           insurance plans, claims, payments, and more. Need help? Our support

@@ -122,7 +122,7 @@ const OurInstructor = () => {
           </span>
         </span>
       </button>
-      <Title level="title48" className="mt-2">
+      <Title level="title48" className="mt-2 text-theme-primary">
         Meet Our Expert Instructor
       </Title>
       <p className="text-gray mt-1">Learn From Creative Experts</p>
@@ -168,7 +168,7 @@ const OurInstructor = () => {
         {instructors.map((instructor) => (
           <SwiperSlide key={instructor.id}>
             <div className="w-full h-[450px] lg:h-[550px] relative overflow-hidden group cursor-pointer rounded-lg border">
-              <Link to="/instructor-details">
+              <Link to="/">
                 <img
                   src={instructor.image}
                   className="w-full h-full object-cover group-hover:scale-[1.1] transition-all duration-700"
@@ -176,7 +176,7 @@ const OurInstructor = () => {
                 />
               </Link>
 
-              <div className="absolute top-[84%] transform group-hover:translate-y-[-15%] transition-all duration-500 w-full h-full left-0 z-20 right-0 text-center pt-1.5 lg:pt-3 bg-[#FAFDFF]">
+              <div className="absolute top-[84%] transform group-hover:translate-y-[-10%] transition-all duration-500 w-full h-full left-0 z-20 right-0 text-center pt-1.5 lg:pt-3 bg-[#FAFDFF]">
                 <h1 className="text-[1.2rem] lg:text-[1.5rem] font-semibold text-center capitalize">
                   {instructor.name}
                 </h1>

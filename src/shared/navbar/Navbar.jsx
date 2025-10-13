@@ -38,9 +38,7 @@ const Navbar = () => {
             alt="KIS School Logo"
             className="h-8 w-8 object-cover"
           />
-          <span className="text-white font-bold text-lg lg:text-xl">
-            KIS School
-          </span>
+          <span className="text-white font-bold text-lg lg:text-xl">KISS</span>
         </Link>
 
         {/* Desktop Nav */}

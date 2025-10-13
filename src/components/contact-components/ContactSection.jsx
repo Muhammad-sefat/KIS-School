@@ -1,5 +1,9 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
+import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
+import { ImageProvider } from "../common/ImageProvider";
+import { slideInBottom } from "@/animation/Animation";
 
 const ContactSection = () => {
   const { register, handleSubmit, reset } = useForm();
@@ -10,10 +14,16 @@ const ContactSection = () => {
   };
 
   return (
-    <section className="section-padding-x py-20 bg-white dark:bg-slate-900">
-      <div className="max-w-[1300px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+    <motion.section
+      variants={slideInBottom}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.2 }}
+      className="section-padding-x py-20 bg-white dark:bg-slate-900"
+    >
+      <div className="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
         {/* LEFT SIDE */}
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-6 relative">
           <h2 className="font-merriweather font-bold text-theme-primary text-3xl md:text-5xl">
             Get in touch
           </h2>
@@ -26,16 +36,29 @@ const ContactSection = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-10 mt-4">
-            <div>
-              <p className="font-merriweather font-semibold text-xl">Email</p>
-              <p className="text-gray text-sm md:text-base">
-                support@kisschool.com
-              </p>
+            <div className="flex items-center gap-2">
+              <img src={ImageProvider.email} alt="email" />
+              <div>
+                <p className="font-merriweather font-semibold text-xl">Email</p>
+                <p className="text-gray text-sm md:text-base">
+                  support@kisschool.com
+                </p>
+              </div>
             </div>
-            <div>
-              <p className="font-merriweather font-semibold text-xl">Call Us</p>
-              <p className="text-gray text-sm md:text-base">+1 212 461 0547</p>
+            <div className="flex items-center gap-2">
+              <img src={ImageProvider.call} alt="call" />
+              <div>
+                <p className="font-merriweather font-semibold text-xl">
+                  Call Us
+                </p>
+                <p className="text-gray text-sm md:text-base">
+                  +1 212 461 0547
+                </p>
+              </div>
             </div>
+          </div>
+          <div className="absolute -bottom-80 left-1/2 transform -translate-x-1/2">
+            <img src={ImageProvider.get} alt="image" />
           </div>
         </div>
 
@@ -97,7 +120,7 @@ const ContactSection = () => {
           </button>
         </form>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

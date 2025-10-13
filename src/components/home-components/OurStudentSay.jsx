@@ -76,7 +76,10 @@ const OurStudentSay = () => {
   return (
     <div className="section-padding-x pb-8 lg:pb-12">
       <div className="relative">
-        <Title level="title48" className="text-center !font-bold py-4">
+        <Title
+          level="title48"
+          className="text-center !font-bold py-4 text-theme-primary"
+        >
           What Our Students <br /> Have To Say
         </Title>
         <p className="text-gray mt-2 w-full md:w-[55%] mx-auto text-center">
@@ -101,7 +104,7 @@ const OurStudentSay = () => {
             nextEl: ".next-btn",
             prevEl: ".prev-btn",
           }}
-          className="mt-6 lg:mt-12"
+          className="mt-6 lg:mt-8 xl:mt-12"
         >
           {testimonials.map((item) => (
             <SwiperSlide key={item.id} className="py-10">

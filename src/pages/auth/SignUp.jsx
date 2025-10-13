@@ -30,7 +30,7 @@ const Signup = () => {
 
         {/* Heading */}
         <h2 className="text-3xl font-bold text-center text-gray-800 mb-2 font-merriweather">
-          Welcome to KIS School
+          Welcome to KISS
         </h2>
         <p className="text-center text-gray-500 mb-6">
           Explore the world of learning with us

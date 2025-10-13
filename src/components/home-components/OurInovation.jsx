@@ -65,7 +65,7 @@ const OurInovation = () => {
           </span>
         </button>
 
-        <Title level="title48" className="mt-4">
+        <Title level="title48" className="mt-4 text-theme-primary">
           Empowering Learning Through Innovation
         </Title>
         <Title level="title18" className="mt-4 text-gray">
@@ -86,7 +86,7 @@ const OurInovation = () => {
             <p className="text-gray">Student Community</p>
           </div>
         </div>
-        <Link to="/signup">
+        <Link to="/sign-in">
           <button className="px-4 py-2 mt-4 rounded-full bg-theme-primary text-white hover:bg-theme-secondary transition duration-300 cursor-pointer">
             Join Now
           </button>

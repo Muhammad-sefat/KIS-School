@@ -6,10 +6,6 @@ import "swiper/css";
 import { ImageProvider } from "../common/ImageProvider";
 import Title from "../common/Title";
 import { Navigation } from "swiper/modules";
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-gsap.registerPlugin(ScrollTrigger);
 
 // Common features for all courses
 const baseFeatures = [
@@ -70,51 +66,15 @@ const StarRating = ({ rating }) => {
 const ServiceCard = () => {
   const [showArrows, setShowArrows] = useState(false);
   const swiperRef = useRef(null);
-  const sectionRef = useRef(null);
-  const titleRef = useRef(null);
-  const subtitleRef = useRef(null);
-  const slideRefs = useRef([]);
-
-  useGSAP(() => {
-    gsap.from([titleRef.current, subtitleRef.current], {
-      y: 20,
-      opacity: 0,
-      duration: 0.8,
-      ease: "power2.out",
-      stagger: 0.1,
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: "top 90%",
-        toggleActions: "play none none none",
-      },
-    });
-
-    // Animate individual slides
-    gsap.from(slideRefs.current, {
-      y: 30,
-      opacity: 0,
-      duration: 0.8,
-      ease: "power2.out",
-      stagger: 0.15,
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: "top 90%",
-        toggleActions: "play none none none",
-      },
-    });
-  }, []);
 
   return (
-    <div
-      ref={sectionRef}
-      className="section-padding-x py-12 bg-[#F9FAFB] relative"
-    >
+    <div className="section-padding-x py-12 bg-[#F9FAFB] relative">
       {/* Section Title */}
       <div className="text-center mb-10">
-        <Title ref={titleRef} level="title48" className="text-theme-primary">
+        <Title level="title48" className="text-theme-primary">
           Master English with Confidence
         </Title>
-        <p ref={subtitleRef} className="text-gray-600 mt-2">
+        <p className="text-gray-600 mt-2">
           Explore our English learning programs tailored for every academic
           level.
         </p>
@@ -169,10 +129,7 @@ const ServiceCard = () => {
         className="will-change-transform"
       >
         {courses.map((course, index) => (
-          <SwiperSlide
-            key={index}
-            ref={(el) => (slideRefs.current[index] = el)}
-          >
+          <SwiperSlide key={index}>
             <div className="border rounded-xl bg-white shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden">
               <img
                 src={course.image}

@@ -1,20 +1,26 @@
-import React, { useRef, useState } from "react";
-import { Link } from "react-router-dom";
-import { ChevronLeft, ChevronRight, Clock, Star } from "lucide-react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
+/* eslint-disable no-unused-vars */
+import React, { useState } from "react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  Clock,
+  Star,
+  BookOpen,
+  Video,
+  Headphones,
+  PenTool,
+  Award,
+} from "lucide-react";
 import { ImageProvider } from "../common/ImageProvider";
-import Title from "../common/Title";
-import { Navigation } from "swiper/modules";
 
 // Common features for all courses
 const baseFeatures = [
-  "50 Topics",
-  "50 Sessions",
-  "1200 Vocabulary (Speaking)",
-  "50 Video Presentations",
-  "Listening Practice (12 Songs + 2 Movies)",
-  "50 Freehand Writing with Feedback",
+  { text: "50 Topics", icon: BookOpen },
+  { text: "50 Sessions", icon: Video },
+  { text: "1200 Vocabulary (Speaking)", icon: Headphones },
+  { text: "50 Video Presentations", icon: Video },
+  { text: "Listening Practice (12 Songs + 2 Movies)", icon: Headphones },
+  { text: "50 Freehand Writing with Feedback", icon: PenTool },
 ];
 
 const courses = [
@@ -25,11 +31,13 @@ const courses = [
     tag: "Beginner",
     duration: "60 Days",
     lessons: "50 Lessons",
-    price: "$99",
-    oldPrice: "$149",
+    price: "5,000",
+    oldPrice: "7,500",
     rating: 4.6,
     image: ImageProvider.course,
     extra: ["Basic Grammar + Vocabulary", "Speaking Warm-up Tasks"],
+    gradient: "from-blue-500 to-indigo-600",
+    tagColor: "bg-blue-500",
   },
   {
     id: 2,
@@ -38,11 +46,13 @@ const courses = [
     tag: "Secondary",
     duration: "90 Days",
     lessons: "70 Lessons",
-    price: "$129",
-    oldPrice: "$179",
+    price: "5,000",
+    oldPrice: "7,500",
     rating: 4.8,
     image: ImageProvider.course1,
     extra: ["Exam Focused Writing", "Model Test with Feedback"],
+    gradient: "from-purple-500 to-pink-600",
+    tagColor: "bg-purple-500",
   },
 ];
 
@@ -64,144 +74,199 @@ const StarRating = ({ rating }) => {
 };
 
 const ServiceCard = () => {
-  const [showArrows, setShowArrows] = useState(false);
-  const swiperRef = useRef(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [hoveredCard, setHoveredCard] = useState(null);
+  const nextSlide = () => {
+    setCurrentIndex((prev) => (prev + 1) % courses.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentIndex((prev) => (prev - 1 + courses.length) % courses.length);
+  };
 
   return (
-    <div className="section-padding-x py-12 bg-[#F9FAFB] relative">
-      {/* Section Title */}
-      <div className="text-center mb-10">
-        <Title level="title48" className="text-theme-primary">
-          Master English with Confidence
-        </Title>
-        <p className="text-gray-600 mt-2">
-          Explore our English learning programs tailored for every academic
-          level.
-        </p>
-      </div>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 py-12 px-4 relative overflow-hidden">
+      {/* Decorative Background */}
+      <div className="absolute top-0 left-0 w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
 
-      {/* Custom Arrows */}
-      {showArrows && (
-        <>
-          <div className="absolute top-1/2 left-2 xl:left-12 z-10 transform -translate-y-1/2">
-            <button
-              onClick={() => swiperRef.current?.slidePrev()}
-              className="p-2 rounded-full bg-white text-theme-primary border border-custom-primary hover:text-white shadow hover:bg-theme-primary transition duration-300 cursor-pointer"
-            >
-              <ChevronLeft size={24} />
-            </button>
+      <div className="section-padding-x relative z-10">
+        {/* Section Title */}
+        <div className="text-center mb-10">
+          <div className="inline-block mb-4">
+            <span className="px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white text-sm font-semibold rounded-full shadow-lg">
+              🎓 Premium Courses
+            </span>
           </div>
-          <div className="absolute top-1/2 right-2 xl:right-12 z-10 transform -translate-y-1/2">
-            <button
-              onClick={() => swiperRef.current?.slideNext()}
-              className="p-2 rounded-full bg-white text-theme-primary border border-theme-primary hover:text-white shadow hover:bg-theme-primary transition duration-300 cursor-pointer"
-            >
-              <ChevronRight size={24} />
-            </button>
-          </div>
-        </>
-      )}
+          <h1 className="text-4xl lg:text-5xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-2">
+            Master English with Confidence
+          </h1>
+          <p className="text-gray-600 text-lg">
+            Explore our English learning programs tailored for every academic
+            level.
+          </p>
+        </div>
 
-      {/* Swiper Section */}
-      <Swiper
-        onSwiper={(swiper) => {
-          swiperRef.current = swiper;
-          const shouldShow = swiper.slides.length > swiper.params.slidesPerView;
-          setShowArrows(shouldShow);
-        }}
-        onResize={(swiper) => {
-          const shouldShow = swiper.slides.length > swiper.params.slidesPerView;
-          setShowArrows(shouldShow);
-        }}
-        loop={courses.length > 3}
-        modules={[Navigation]}
-        spaceBetween={30}
-        slidesPerView={3}
-        speed={600}
-        touchRatio={1.5}
-        grabCursor={true}
-        breakpoints={{
-          0: { slidesPerView: 1, spaceBetween: 10 },
-          640: { slidesPerView: 1, spaceBetween: 20 },
-          768: { slidesPerView: 2, spaceBetween: 25 },
-          1024: { slidesPerView: 3, spaceBetween: 30 },
-        }}
-        className="will-change-transform"
-      >
-        {courses.map((course, index) => (
-          <SwiperSlide key={index}>
-            <div className="border rounded-xl bg-white shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden">
-              <img
-                src={course.image}
-                alt={course.title}
-                width={400}
-                height={200}
-                className="w-full object-cover hover:scale-105 transition-transform duration-500"
-              />
-              <div className="p-5 flex flex-col gap-3">
-                <p className="text-theme-secondary text-sm font-medium uppercase tracking-wide">
-                  {course.tag}
-                </p>
-                <h3 className="text-lg lg:text-2xl font-semibold text-theme-primary leading-snug">
-                  {course.title}
-                </h3>
-                <p className="text-gray-500 text-sm">{course.instructor}</p>
-                <ul className="text-gray-700 text-sm list-disc pl-5 mt-1 space-y-1">
-                  {baseFeatures.map((f, i) => (
-                    <li key={i}>{f}</li>
-                  ))}
-                </ul>
-                <div className="mt-1">
-                  <p className="text-theme-primary font-medium text-sm">
-                    Extra Features:
-                  </p>
-                  <ul className="text-gray-600 text-sm list-disc pl-5 mt-1">
-                    {course.extra.map((e, i) => (
-                      <li key={i}>{e}</li>
-                    ))}
-                  </ul>
-                </div>
-                <div className="flex justify-between items-center mt-4">
-                  <div className="flex items-center gap-2 text-gray-600 text-sm">
-                    <Clock size={16} /> <span>{course.duration}</span>
+        {/* Cards Grid - Responsive */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-6xl mx-auto mb-10">
+          {courses.map((course, index) => (
+            <div
+              key={index}
+              onMouseEnter={() => setHoveredCard(index)}
+              onMouseLeave={() => setHoveredCard(null)}
+              className="relative group"
+            >
+              {/* Glowing Effect */}
+              <div
+                className={`absolute inset-0 bg-gradient-to-r ${course.gradient} rounded-3xl blur-2xl opacity-30 group-hover:opacity-50 transition-opacity duration-500`}
+              ></div>
+
+              {/* Card */}
+              <div className="relative bg-white rounded-3xl shadow-xl overflow-hidden transform transition-all duration-500 hover:scale-105 hover:-translate-y-2">
+                {/* Image Section */}
+                <div className="relative overflow-hidden h-56">
+                  <img
+                    src={course.image}
+                    alt={course.title}
+                    className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+
+                  {/* Tag Badge */}
+                  <div
+                    className={`absolute top-4 left-4 px-4 py-2 ${course.tagColor} text-white text-xs font-bold rounded-full shadow-lg backdrop-blur-sm uppercase tracking-wide`}
+                  >
+                    {course.tag}
                   </div>
-                  <div className="flex items-center gap-1 text-sm">
-                    <span>{course.rating}</span>{" "}
+
+                  {/* Rating Badge */}
+                  <div className="absolute top-4 right-4 px-3 py-2 bg-white/90 backdrop-blur-sm rounded-full shadow-lg flex items-center gap-2">
+                    <span className="text-sm font-bold text-gray-800">
+                      {course.rating}
+                    </span>
                     <StarRating rating={course.rating} />
                   </div>
                 </div>
-                <div className="flex justify-between items-center mt-3">
-                  <div className="flex items-center gap-2">
-                    <p className="text-lg font-bold text-green-600">
-                      {course.price}
-                    </p>
-                    <p className="text-gray-400 line-through text-sm">
-                      {course.oldPrice}
-                    </p>
+
+                {/* Content Section */}
+                <div className="p-6">
+                  {/* Title & Instructor */}
+                  <h3 className="text-xl lg:text-2xl font-bold text-gray-800 mb-2 group-hover:text-blue-600 transition-colors leading-snug">
+                    {course.title}
+                  </h3>
+                  <p className="text-gray-500 text-sm mb-4 flex items-center gap-2">
+                    <Award size={16} className="text-purple-500" />
+                    {course.instructor}
+                  </p>
+
+                  {/* Duration Info */}
+                  <div className="flex items-center gap-4 mb-5 pb-5 border-b border-gray-200">
+                    <div className="flex items-center gap-2 text-gray-600 text-sm">
+                      <Clock size={18} className="text-blue-500" />
+                      <span className="font-medium">{course.duration}</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-gray-600 text-sm">
+                      <BookOpen size={18} className="text-purple-500" />
+                      <span className="font-medium">{course.lessons}</span>
+                    </div>
                   </div>
-                  <Link
-                    to="https://forms.gle/gDvnNA5KD7V5cdVQ8"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-sm px-4 py-2 rounded-full bg-theme-secondary text-white hover:bg-theme-primary transition duration-300"
-                  >
-                    Enroll Now
-                  </Link>
+
+                  {/* Base Features */}
+                  <div className="mb-4">
+                    <h4 className="text-sm font-bold text-gray-800 mb-3 flex items-center gap-2">
+                      <span className="w-1 h-5 bg-gradient-to-b from-blue-500 to-purple-500 rounded"></span>
+                      Course Features
+                    </h4>
+                    <ul className="space-y-2">
+                      {baseFeatures.map((feature, i) => {
+                        const Icon = feature.icon;
+                        return (
+                          <li
+                            key={i}
+                            className="flex items-start gap-2 text-sm text-gray-700 group/item"
+                          >
+                            <Icon
+                              size={16}
+                              className="text-blue-500 mt-0.5 flex-shrink-0 group-hover/item:text-purple-500 transition-colors"
+                            />
+                            <span>{feature.text}</span>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
+
+                  {/* Extra Features */}
+                  <div className="mb-6 p-4 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl">
+                    <h4 className="text-sm font-bold text-gray-800 mb-2 flex items-center gap-2">
+                      <span className="text-purple-500">✨</span>
+                      Extra Features
+                    </h4>
+                    <ul className="space-y-1">
+                      {course.extra.map((e, i) => (
+                        <li
+                          key={i}
+                          className="flex items-start gap-2 text-sm text-gray-700"
+                        >
+                          <span className="text-purple-500 mt-0.5">•</span>
+                          <span>{e}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Price & CTA */}
+                  <div className="flex items-center justify-between pt-4 border-t border-gray-200">
+                    <div>
+                      <div className="flex items-baseline gap-2">
+                        <span className="text-2xl lg:text-3xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
+                          ৳{course.price}
+                        </span>
+                        <span className="text-gray-400 line-through text-sm">
+                          ৳{course.oldPrice}
+                        </span>
+                      </div>
+                      <p className="text-xs text-gray-500 mt-1">
+                        Limited time offer
+                      </p>
+                    </div>
+                    <a
+                      href="https://forms.gle/gDvnNA5KD7V5cdVQ8"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`px-4 lg:px-6 py-2 lg:py-3 bg-gradient-to-r ${course.gradient} text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform transition-all duration-300 hover:scale-105 text-sm`}
+                    >
+                      Enroll Now
+                    </a>
+                  </div>
                 </div>
+
+                {/* Hover Effect Indicator */}
+                <div
+                  className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${
+                    course.gradient
+                  } transform transition-all duration-500 ${
+                    hoveredCard === index ? "scale-x-100" : "scale-x-0"
+                  }`}
+                ></div>
               </div>
             </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+          ))}
+        </div>
 
-      {/* View All */}
-      <div className="flex justify-center mt-10">
-        <Link
-          to="/service"
-          className="px-6 py-3 text-sm font-medium rounded-full text-theme-primary border border-theme-primary hover:bg-theme-secondary hover:text-white transition duration-300"
-        >
-          View All Courses
-        </Link>
+        {/* View All Button */}
+        <div className="flex justify-center">
+          <a
+            href="/service"
+            className="group px-8 py-4 bg-white text-blue-600 font-semibold rounded-full shadow-xl hover:shadow-2xl border-2 border-blue-200 hover:bg-gradient-to-r hover:from-blue-600 hover:to-purple-600 hover:text-white hover:border-transparent transition-all duration-300 flex items-center gap-2"
+          >
+            View All Courses
+            <ChevronRight
+              size={20}
+              className="transform group-hover:translate-x-1 transition-transform"
+            />
+          </a>
+        </div>
       </div>
     </div>
   );

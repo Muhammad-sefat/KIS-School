@@ -1,4 +1,3 @@
-import logo from "../../../public/book.png";
 import light from "../../assets/images/light.png";
 import homebanner from "../../assets/images/homebanner.png";
 import banner from "../../assets/images/banner.png";
@@ -35,6 +34,7 @@ import telephone from "../../assets/images/telephone.jpg";
 import get from "../../assets/images/get.png";
 import email from "../../assets/images/email.png";
 import call from "../../assets/images/call.png";
+import logo from "../../assets/images/logo.jpg";
 
 export const ImageProvider = {
   logo,

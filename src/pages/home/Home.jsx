@@ -1,4 +1,5 @@
 import Accordian from "@/components/home-components/Accordian";
+import CourseCards from "@/components/home-components/CourseCards";
 import { HomeBanner } from "@/components/home-components/HomeBanner";
 import OurInovation from "@/components/home-components/OurInovation";
 import OurInstructor from "@/components/home-components/OurInstructor";
@@ -13,10 +14,11 @@ const Home = () => {
     <>
       <ScrollRestoration />
       <HomeBanner />
-      <OurRating />
+      {/* <OurRating /> */}
+      <CourseCards />
       <OurInovation />
       <ServiceCard />
-      <OurInstructor />
+      {/* <OurInstructor /> */}
       <OurStudentSay />
       <Accordian />
     </>

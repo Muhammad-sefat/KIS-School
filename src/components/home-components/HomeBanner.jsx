@@ -23,22 +23,16 @@ export const HomeBanner = () => {
         />
 
         <Title level="title80" className="leading-tight text-theme-primary">
-          Unlock{" "}
-          <span className="text-theme-secondary">
-            Skills <br className="hidden md:block" /> Build Your Future
-          </span>
+          Welcome to{" "}
+          <span className="text-theme-secondary">Key Issue Solving School</span>
         </Title>
 
         <Title level="title18" className="mt-2 text-gray">
-          At <strong className="text-theme-primary">KIS School</strong>, we help
-          learners across Asia grow their skills through practical, real-world
-          learning.
-          <p className="mt-2">
-            Whether you want to upgrade your career, explore new fields, or
-            teach what you know — our platform connects passionate learners and
-            skilled instructors through courses designed for today’s digital
-            world.
-          </p>
+          We have solved the problem that students are not as interested in
+          studying as they are in playing games. In Bangladesh, many students
+          find it hard to speak or write English freely. We use the Direct
+          Method to help them learn English fluently. That’s why we are called
+          <strong>Key Issue Solving School</strong>.
         </Title>
 
         <Link to="/sign-in">

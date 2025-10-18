@@ -159,7 +159,7 @@ const Signup = () => {
 
           <button
             type="submit"
-            className="w-full bg-theme-primary text-white py-2 rounded-full font-semibold hover:bg-theme-secondary transition duration-200"
+            className="w-full bg-theme-primary text-white py-2 rounded-full font-semibold hover:bg-theme-secondary transition duration-200 cursor-pointer"
           >
             Register
           </button>

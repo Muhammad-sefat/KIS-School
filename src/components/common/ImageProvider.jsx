@@ -35,8 +35,10 @@ import get from "../../assets/images/get.png";
 import email from "../../assets/images/email.png";
 import call from "../../assets/images/call.png";
 import logo from "../../assets/images/logo.jpg";
+import contactt from "../../assets/images/contactt.jpg";
 
 export const ImageProvider = {
+  contactt,
   logo,
   light,
   homebanner,

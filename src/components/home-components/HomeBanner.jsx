@@ -8,7 +8,7 @@ import { slideInLeft, slideInRight } from "@/animation/Animation";
 
 export const HomeBanner = () => {
   return (
-    <div className="flex flex-col lg:flex-row items-center gap-5 section-padding-x py-4 lg:pt-8 xl:pt-12">
+    <div className="flex flex-col lg:flex-row items-center gap-5 section-padding-x py-4 lg:pt-8 xl:pt-12 bg-gradient-to-b from-[#1f2a61]/20 via-[#1f2a61]/10 to-white">
       {/* Left Content */}
       <motion.div
         className="w-full lg:w-[50%] flex flex-col items-center lg:items-start text-center lg:text-left"
@@ -31,7 +31,7 @@ export const HomeBanner = () => {
           We have solved the problem that students are not as interested in
           studying as they are in playing games. In Bangladesh, many students
           find it hard to speak or write English freely. We use the Direct
-          Method to help them learn English fluently. That’s why we are called
+          Method to help them learn English fluently. That’s why we are called{" "}
           <strong>Key Issue Solving School</strong>.
         </Title>
 

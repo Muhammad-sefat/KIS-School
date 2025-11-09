@@ -52,7 +52,7 @@ const Accordian = () => {
         variants={slideInLeft}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
+        viewport={{ once: true }}
       >
         <div className="relative">
           <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-purple-500 rounded-3xl blur-2xl opacity-20"></div>
@@ -70,7 +70,7 @@ const Accordian = () => {
         variants={slideInRight}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
+        viewport={{ once: true}}
       >
         <div className="mb-6">
           <div className="inline-block mb-4">

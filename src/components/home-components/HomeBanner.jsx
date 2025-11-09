@@ -15,6 +15,7 @@ export const HomeBanner = () => {
         variants={slideInLeft}
         initial="hidden"
         whileInView="visible"
+          viewport={{ once: true }}
       >
         <img
           src={ImageProvider.light}
@@ -48,6 +49,7 @@ export const HomeBanner = () => {
         variants={slideInRight}
         initial="hidden"
         whileInView="visible"
+          viewport={{ once: true }}
       >
         <img
           src={ImageProvider.homebanner}

@@ -15,11 +15,11 @@ const Layout = () => {
     requestAnimationFrame(raf);
   }, []);
   return (
-    <>
+    <div className="overflow-hidden">
       <Navbar />
       <Outlet />
       <Footer />
-    </>
+    </div>
   );
 };
 

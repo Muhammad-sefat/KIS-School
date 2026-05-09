@@ -1,83 +1,243 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
+import { motion } from "framer-motion";
+
+const ENROLL_URL = "https://forms.gle/gDvnNA5KD7V5cdVQ8";
+
+const courses = [
+  {
+    classLabel: "Class 3",
+    title: "Foundation Builders",
+    description:
+      "Start your English journey with the essentials. Build a rock-solid base in grammar, basic vocabulary, and simple spoken sentences — the first step to fluency.",
+    features: [
+      "Core Grammar Rules",
+      "Basic Speaking Practice",
+      "Intro Writing Tasks",
+    ],
+    price: "৳ 1,200",
+    gradient: "from-sky-500 to-blue-700",
+    badge: "Beginner",
+    icon: "🌱",
+  },
+  {
+    classLabel: "Class 4",
+    title: "Word Power Ignition",
+    description:
+      "Fuel your vocabulary engine. Learn 20 new words every week, apply them in speaking sessions, and craft short structured writing tasks with teacher feedback.",
+    features: [
+      "Vocabulary Expansion",
+      "Spoken Word Practice",
+      "Short Writing Tasks",
+    ],
+    price: "৳ 1,200",
+    gradient: "from-violet-500 to-purple-700",
+    badge: "Beginner",
+    icon: "🔤",
+  },
+  {
+    classLabel: "Class 5",
+    title: "Sentence Architects",
+    description:
+      "Move beyond single words — learn to construct meaningful sentences. Master sentence structure, practice speaking in full sentences, and write coherent paragraphs.",
+    features: [
+      "Sentence Structure",
+      "Speaking in Full Sentences",
+      "Paragraph Writing",
+    ],
+    price: "৳ 1,400",
+    gradient: "from-emerald-500 to-teal-700",
+    badge: "Elementary",
+    icon: "🏗️",
+  },
+  {
+    classLabel: "Class 6",
+    title: "Confident Communicators",
+    description:
+      "Step into the real world of communication. This level pushes your grammar deeper, develops confident oral delivery, and introduces topic-based writing with 5-point feedback.",
+    features: [
+      "Advanced Grammar Topics",
+      "Topic-Based Speaking",
+      "Feedback-Driven Writing",
+    ],
+    price: "৳ 1,600",
+    gradient: "from-orange-500 to-red-600",
+    badge: "Pre-Intermediate",
+    icon: "🗣️",
+  },
+  {
+    classLabel: "Class 7",
+    title: "Expression Masters",
+    description:
+      "Express opinions, tell stories, and write with clarity. Weekly Language Club sessions put your skills to the test alongside peers in a live speaking environment.",
+    features: [
+      "Opinion & Story Speaking",
+      "Language Club Sessions",
+      "Creative Writing",
+    ],
+    price: "৳ 1,800",
+    gradient: "from-pink-500 to-rose-700",
+    badge: "Pre-Intermediate",
+    icon: "🎭",
+  },
+  {
+    classLabel: "Class 8",
+    title: "Presentation Pro",
+    description:
+      "Deliver video presentations without scripts, receive structured improvement feedback, and rewrite your work — all while earning rewards for meeting quality standards.",
+    features: [
+      "Script-Free Presentations",
+      "5-Point Improvement Feedback",
+      "Structured Rewriting",
+    ],
+    price: "৳ 2,000",
+    gradient: "from-cyan-500 to-indigo-700",
+    badge: "Intermediate",
+    icon: "🎥",
+  },
+  {
+    classLabel: "Class 9",
+    title: "Fluency Accelerator",
+    description:
+      "Intensive listening, rapid vocabulary sessions, and viva-style assessments every week sharpen your reflexes and move you closer to natural, effortless English.",
+    features: [
+      "Listening Comprehension",
+      "Speed Vocabulary Viva",
+      "Reflex Speaking Drills",
+    ],
+    price: "৳ 2,200",
+    gradient: "from-amber-500 to-yellow-600",
+    badge: "Upper Intermediate",
+    icon: "⚡",
+  },
+  {
+    classLabel: "Class 10",
+    title: "Mastery & Beyond",
+    description:
+      "The pinnacle of the KISS program. Demonstrate total command of grammar, writing, and speaking through comprehensive vivas, a final presentation, and a capstone writing project.",
+    features: [
+      "Comprehensive Final Viva",
+      "Capstone Presentation",
+      "Advanced Writing Project",
+    ],
+    price: "৳ 2,500",
+    gradient: "from-fuchsia-500 to-purple-800",
+    badge: "Advanced",
+    icon: "👑",
+  },
+];
 
 export default function CourseCards() {
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const [hoveredVivaIndex, setHoveredVivaIndex] = useState(null);
+  const row1 = courses.slice(0, 3);
+  const row2 = courses.slice(3, 6);
+  const row3 = courses.slice(6, 8);
+  const Card = ({ course, index }) => (
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.1 }}
+      transition={{ duration: 0.6, delay: index * 0.1 }}
+      className="relative group flex flex-col"
+    >
+      {/* Glow */}
+      <motion.div
+        whileHover={{ scale: 1.03 }}
+        transition={{ duration: 0.25 }}
+        className={`absolute inset-0 bg-gradient-to-br ${course.gradient} rounded-2xl blur-2xl opacity-40 group-hover:opacity-70 transition-opacity duration-400`}
+      />
 
-  const modules = [
-    {
-      title: "Grammar",
-      subtitle: "50 Essential Topics",
-      icon: "📚",
-      gradient: "from-blue-500 to-indigo-600",
-      points: [
-        "Video lessons published on social media",
-        "Watch at home and submit notes",
-        "Video viva with eye mask for fairness",
-        "Answer 4/5 questions correctly = 20 Taka reward",
-      ],
-    },
-    {
-      title: "Video Presentation",
-      subtitle: "50 Tasks",
-      icon: "🎥",
-      gradient: "from-purple-500 to-pink-600",
-      points: [
-        "Prepare presentations without scripts",
-        "Receive feedback on 5 improvement areas",
-        "Recreate video with corrections",
-        "Meet guidance standards = 20 Taka per video",
-      ],
-    },
-    {
-      title: "Listening Practice",
-      subtitle: "50 Activities",
-      icon: "🎧",
-      gradient: "from-green-500 to-teal-600",
-      points: [
-        "Songs, movies, cartoons, and news clips",
-        "Match lyrics while listening",
-        "Repeat sentences with eye mask in viva",
-        "Answer 4/5 questions correctly = 20 Taka",
-      ],
-    },
-    {
-      title: "Vocabulary",
-      subtitle: "1,000 Words",
-      icon: "📖",
-      gradient: "from-orange-500 to-red-600",
-      points: [
-        "Learn 20 new words each class",
-        "Viva on word meanings",
-        "Answer 4/5 questions correctly",
-        "Earn 20 Taka per session",
-      ],
-    },
-    {
-      title: "Writing",
-      subtitle: "50 Tasks",
-      icon: "✍️",
-      gradient: "from-cyan-500 to-blue-600",
-      points: [
-        "Write freely on selected topics",
-        "Receive 5 feedback points",
-        "Rewrite based on corrections",
-        "Complete successfully = 20 Taka per task",
-      ],
-    },
-    {
-      title: "Speaking Practice",
-      subtitle: "Language Club",
-      icon: "🗣️",
-      gradient: "from-yellow-500 to-orange-600",
-      points: [
-        "Online clubs with 10 members",
-        "Interactive speaking sessions",
-        "Natural communication practice",
-        "Build confidence in English",
-      ],
-    },
-  ];
+      {/* Card */}
+      <div className="relative flex flex-col h-full bg-gray-800 bg-opacity-90 backdrop-blur-sm rounded-2xl border border-gray-700 overflow-hidden shadow-xl">
+        {/* Top Bar */}
+        <div className={`h-1.5 w-full bg-gradient-to-r ${course.gradient}`} />
+
+        {/* Header */}
+        <div className="p-6 pb-4">
+          <div className="flex items-start justify-between mb-3">
+            <div>
+              <span
+                className={`inline-block text-xs font-bold px-3 py-1 rounded-full bg-gradient-to-r ${course.gradient} text-white mb-2`}
+              >
+                {course.badge}
+              </span>
+              <p className="text-gray-400 text-xs font-semibold tracking-widest uppercase">
+                {course.classLabel}
+              </p>
+            </div>
+            <div
+              className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${course.gradient} flex items-center justify-center text-3xl shadow-lg transform transition-transform duration-300 ${
+                hoveredIndex === index ? "scale-110 rotate-6" : ""
+              }`}
+            >
+              {course.icon}
+            </div>
+          </div>
+
+          <h3 className="text-2xl font-extrabold text-white mb-2 leading-tight">
+            {course.title}
+          </h3>
+          <p className="text-gray-400 text-sm leading-relaxed">
+            {course.description}
+          </p>
+        </div>
+
+        {/* Divider */}
+        <div
+          className={`mx-6 h-px bg-gradient-to-r ${course.gradient} opacity-50`}
+        />
+
+        {/* Features */}
+        <div className="px-6 py-4 flex-1">
+          <p className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-3">
+            What's Included
+          </p>
+          <ul className="space-y-2">
+            {course.features.map((feat, i) => (
+              <li
+                key={i}
+                className="flex items-center gap-3 text-sm text-gray-300"
+              >
+                <span
+                  className={`w-2 h-2 rounded-full bg-gradient-to-r ${course.gradient} shrink-0`}
+                />
+                {feat}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Footer */}
+        <div className="px-6 pb-6 pt-3 flex items-center justify-between">
+          <div>
+            <p className="text-xs text-gray-500 mb-0.5">Monthly Fee</p>
+            <p
+              className={`text-2xl font-black bg-gradient-to-r ${course.gradient} bg-clip-text text-transparent`}
+            >
+              {course.price}
+            </p>
+            <p className="text-xs text-gray-500">12 classes / month</p>
+          </div>
+          <a
+            href={ENROLL_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`px-5 py-2.5 bg-gradient-to-r ${course.gradient} text-white font-bold rounded-full shadow-lg hover:shadow-xl transform transition-all duration-300 hover:scale-105 text-sm whitespace-nowrap`}
+          >
+            Enroll Now →
+          </a>
+        </div>
+
+        {/* Bottom animated bar */}
+        <div
+          className={`h-0.5 bg-gradient-to-r ${course.gradient} transform transition-all duration-500 ${
+            hoveredIndex === index ? "w-full" : "w-0"
+          }`}
+        />
+      </div>
+    </motion.div>
+  );
 
   const vivaCards = [
     {
@@ -131,88 +291,51 @@ export default function CourseCards() {
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-indigo-900 to-purple-900 py-8 lg:py-12">
       <div className="section-padding-x">
         {/* Animated Header */}
-        <div className="text-center mb-16">
-          <h1 className="text-6xl font-bold mb-4 bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-500 bg-clip-text text-transparent animate-pulse">
-            Our Course Modules
-          </h1>
-          <div className="h-1 w-32 mx-auto bg-gradient-to-r from-yellow-400 to-purple-500 rounded-full"></div>
+        <div className="text-center mb-14">
+          <motion.h1
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-500 bg-clip-text text-transparent"
+          >
+            Our Course Plans
+          </motion.h1>
+          <div className="h-1 w-32 mx-auto bg-gradient-to-r from-yellow-400 to-purple-500 rounded-full mb-5" />
+          <p className="text-gray-300 text-lg max-w-2xl mx-auto">
+            From Class 3 to Class 10 — every level is crafted to build your
+            grammar, speaking, and writing skills together.{" "}
+            <span className="text-yellow-400 font-semibold">
+              3 sessions per week · 12 classes per month.
+            </span>
+          </p>
         </div>
 
         {/* Course Modules Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
-          {modules.map((module, index) => (
-            <div
-              key={index}
-              onMouseEnter={() => setHoveredIndex(index)}
-              onMouseLeave={() => setHoveredIndex(null)}
-              className="relative group"
-            >
-              {/* Glowing Background Effect */}
-              <div
-                className={`absolute inset-0 bg-gradient-to-r ${module.gradient} rounded-2xl blur-xl opacity-50 group-hover:opacity-75 transition-opacity duration-300`}
-              ></div>
+        {/* Row 1 — 3 cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+          {row1.map((course, i) => (
+            <Card key={i} course={course} index={i} />
+          ))}
+        </div>
 
-              {/* Card Content */}
-              <div className="relative bg-gray-800 bg-opacity-90 backdrop-blur-sm rounded-2xl p-6 border border-gray-700 transform transition-all duration-300 hover:scale-105 hover:-translate-y-2">
-                {/* Icon Badge */}
-                <div
-                  className={`absolute -top-6 -right-6 w-16 h-16 bg-gradient-to-r ${
-                    module.gradient
-                  } rounded-full flex items-center justify-center text-3xl shadow-lg transform transition-transform duration-300 ${
-                    hoveredIndex === index ? "scale-110 rotate-12" : ""
-                  }`}
-                >
-                  {module.icon}
-                </div>
+        {/* Row 2 — 3 cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+          {row2.map((course, i) => (
+            <Card key={i + 3} course={course} index={i + 3} />
+          ))}
+        </div>
 
-                {/* Content */}
-                <div className="mb-4 pt-4">
-                  <h3 className="text-3xl font-bold mb-2 text-white">
-                    {module.title}
-                  </h3>
-                  <p
-                    className={`text-sm font-semibold bg-gradient-to-r ${module.gradient} bg-clip-text text-transparent`}
-                  >
-                    {module.subtitle}
-                  </p>
-                </div>
-
-                {/* Divider */}
-                <div
-                  className={`h-px bg-gradient-to-r ${module.gradient} mb-4`}
-                ></div>
-
-                {/* Points */}
-                <ul className="space-y-3">
-                  {module.points.map((point, idx) => (
-                    <li
-                      key={idx}
-                      className="flex items-start text-sm text-gray-300 transform transition-all duration-200 hover:translate-x-2"
-                    >
-                      <span
-                        className={`mr-3 mt-1 w-2 h-2 rounded-full bg-gradient-to-r ${module.gradient} flex-shrink-0`}
-                      ></span>
-                      <span>{point}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                {/* Bottom Accent */}
-                <div
-                  className={`mt-6 h-1 bg-gradient-to-r ${
-                    module.gradient
-                  } rounded-full transform transition-all duration-300 ${
-                    hoveredIndex === index ? "w-full" : "w-0"
-                  }`}
-                ></div>
-              </div>
-            </div>
+        {/* Row 3 — 2 cards full width (each takes 50%) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {row3.map((course, i) => (
+            <Card key={i + 6} course={course} index={i + 6} />
           ))}
         </div>
 
         {/* Earnings Highlight */}
-        <div className="relative mb-20 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-3xl blur-2xl opacity-30"></div>
+        <div className="relative my-20 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-3xl opacity-60"></div>
           <div className="relative bg-gradient-to-r from-yellow-400 to-orange-500 rounded-3xl p-8 text-center shadow-2xl">
             <div className="text-6xl mb-4">💰</div>
             <p className="text-3xl font-bold text-gray-900">

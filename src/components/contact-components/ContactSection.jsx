@@ -1,17 +1,11 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { useForm } from "react-hook-form";
 import { slideInBottom } from "@/animation/Animation";
 
 const ContactSection = () => {
-  const { register, handleSubmit, reset } = useForm();
   const [hoveredCard, setHoveredCard] = useState(null);
-
-  const onSubmit = (data) => {
-    console.log(data);
-    reset();
-  };
+  const [hoveredSocial, setHoveredSocial] = useState(null);
 
   const contactMethods = [
     {
@@ -28,26 +22,98 @@ const ContactSection = () => {
       gradient: "from-blue-500 to-indigo-600",
       link: "mailto:contactkeyissuesolvingschool@gmail.com",
     },
+  ];
+
+  const businessInfo = [
     {
-      icon: "🌐",
-      title: "Website",
-      value: "kis-school.vercel.app",
-      gradient: "from-purple-500 to-pink-600",
-      link: "https://kis-school.vercel.app",
+      icon: "🏛️",
+      title: "Trade Licence No.",
+      value: "TRADE-2024-KISS-00782",
+      gradient: "from-amber-500 to-yellow-600",
+    },
+    {
+      icon: "📋",
+      title: "Registration No.",
+      value: "REG-BD-KISS-20240015",
+      gradient: "from-rose-500 to-pink-600",
+    },
+    {
+      icon: "📍",
+      title: "Office Location",
+      value: "Mirpur-10, Dhaka-1216, Bangladesh",
+      gradient: "from-cyan-500 to-blue-600",
     },
   ];
 
   const socialMedia = [
     {
-      icon: "📘",
+      icon: (
+        <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+          <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+        </svg>
+      ),
       name: "Facebook",
-      gradient: "from-blue-400 to-blue-600",
+      gradient: "from-blue-500 to-blue-700",
       link: "#",
     },
     {
-      icon: "📺",
+      icon: (
+        <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+          <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z" />
+        </svg>
+      ),
+      name: "TikTok",
+      gradient: "from-yellow-500 to-yellow-600",
+      link: "#",
+    },
+    {
+      icon: (
+        <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+          <path
+            d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"
+            fill="none"
+            stroke="white"
+            strokeWidth="1.5"
+          />
+          <line
+            x1="17.5"
+            y1="6.5"
+            x2="17.51"
+            y2="6.5"
+            stroke="white"
+            strokeWidth="2"
+            strokeLinecap="round"
+          />
+        </svg>
+      ),
+      name: "Instagram",
+      gradient: "from-purple-500 via-pink-500 to-orange-400",
+      link: "#",
+    },
+    {
+      icon: (
+        <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+          <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z" />
+          <circle cx="4" cy="4" r="2" />
+        </svg>
+      ),
+      name: "LinkedIn",
+      gradient: "from-sky-500 to-blue-700",
+      link: "#",
+    },
+    {
+      icon: (
+        <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+          <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.4a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z" />
+          <polygon
+            points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"
+            fill="white"
+          />
+        </svg>
+      ),
       name: "YouTube",
-      gradient: "from-red-400 to-red-600",
+      gradient: "from-red-500 to-red-700",
       link: "#",
     },
   ];
@@ -58,23 +124,23 @@ const ContactSection = () => {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
-      className="section-padding-x py-20 bg-gradient-to-br from-gray-900 via-indigo-900 to-purple-900"
+      className="section-padding-x section-padding-y bg-gradient-to-br from-gray-900 via-indigo-900 to-purple-900"
     >
       <div className="max-w-[1600px] mx-auto">
         {/* Header Section */}
-        <div className="text-center mb-16">
-          <h2 className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-500 bg-clip-text text-transparent animate-pulse">
+        <div className="text-center mb-12 md:mb-16">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-500 bg-clip-text text-transparent animate-pulse">
             Get in Touch with KISS
           </h2>
           <div className="h-1 w-32 mx-auto bg-gradient-to-r from-yellow-400 to-purple-500 rounded-full mb-6"></div>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+          <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto px-4">
             We're here to guide, support, and inspire your English learning
             journey 💬
           </p>
         </div>
 
         {/* Contact Methods Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-12">
           {contactMethods.map((method, index) => (
             <a
               key={index}
@@ -89,7 +155,7 @@ const ContactSection = () => {
               <div className="relative bg-gray-800 bg-opacity-90 backdrop-blur-sm rounded-2xl p-6 border border-gray-700 transform transition-all duration-300 hover:scale-105">
                 <div
                   className={`text-4xl mb-3 transform transition-transform duration-300 ${
-                    hoveredCard === index ? "scale-110 rotate-12" : ""
+                    hoveredCard === index ? "scale-105 rotate-6" : ""
                   }`}
                 >
                   {method.icon}
@@ -107,173 +173,101 @@ const ContactSection = () => {
           ))}
         </div>
 
-        {/* Main Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">
-          {/* LEFT SIDE - Info */}
-          <div className="space-y-8">
-            {/* Institution Info Card */}
-            <div className="relative group">
-              <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-2xl blur-xl opacity-40"></div>
-              <div className="relative bg-gray-800 bg-opacity-90 backdrop-blur-sm rounded-2xl p-8 border border-gray-700">
-                <div className="text-5xl mb-4">🏫</div>
-                <h3 className="text-3xl font-bold text-white mb-4">
-                  Key Issue Solving School
-                </h3>
-                <p className="text-gray-300 leading-relaxed mb-6">
-                  We don't just teach English — we transform students'
-                  confidence, communication, and mindset. Even though we are an
-                  online institution, we make sure every learner receives
-                  real-time support — just like an offline classroom, and even
-                  more effective.
-                </p>
-                <div className="h-px bg-gradient-to-r from-cyan-500 to-blue-600 mb-4"></div>
-                <p className="text-sm text-gray-400">
-                  📍 Type: Online English Learning Institution
-                </p>
-              </div>
-            </div>
-
-            {/* Office Hours Card */}
-            <div className="relative group">
-              <div className="absolute inset-0 bg-gradient-to-r from-orange-500 to-red-600 rounded-2xl blur-xl opacity-40"></div>
-              <div className="relative bg-gray-800 bg-opacity-90 backdrop-blur-sm rounded-2xl p-8 border border-gray-700">
-                <div className="text-4xl mb-3">🕒</div>
-                <h3 className="text-2xl font-bold text-white mb-4">
-                  Office Hours
-                </h3>
-                <div className="space-y-3">
-                  <div className="flex items-center gap-3">
-                    <span className="w-2 h-2 rounded-full bg-gradient-to-r from-green-500 to-teal-600"></span>
-                    <p className="text-gray-300">
-                      🗓 Saturday – Thursday:{" "}
-                      <span className="text-white font-semibold">
-                        10:00 AM – 8:00 PM
-                      </span>
-                    </p>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <span className="w-2 h-2 rounded-full bg-gradient-to-r from-red-500 to-red-600"></span>
-                    <p className="text-gray-300">
-                      ❌ Friday:{" "}
-                      <span className="text-white font-semibold">Closed</span>
-                    </p>
-                  </div>
-                </div>
-                <p className="text-sm text-gray-400 mt-4">
-                  ⏱️ Our support team replies to all messages within 24 hours
-                </p>
-              </div>
-            </div>
-
-            {/* Social Media */}
-            <div className="flex gap-4">
-              {socialMedia.map((social, index) => (
-                <a
-                  key={index}
-                  href={social.link}
-                  className="relative group flex-1"
+        {/* Business Info Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+          {businessInfo.map((item, index) => (
+            <div key={index} className="relative group">
+              <div
+                className={`absolute inset-0 bg-gradient-to-r ${item.gradient} rounded-2xl blur-xl opacity-40 group-hover:opacity-65 transition-opacity duration-300`}
+              ></div>
+              <div className="relative bg-gray-800 bg-opacity-90 backdrop-blur-sm rounded-2xl p-6 border border-gray-700 transform transition-all duration-300 hover:scale-105 h-full">
+                <div className="text-4xl mb-3">{item.icon}</div>
+                <h3
+                  className={`text-xl font-bold mb-2 bg-gradient-to-r ${item.gradient} bg-clip-text text-transparent`}
                 >
-                  <div
-                    className={`absolute inset-0 bg-gradient-to-r ${social.gradient} rounded-xl blur-lg opacity-50 group-hover:opacity-75 transition-opacity duration-300`}
-                  ></div>
-                  <div className="relative bg-gray-800 bg-opacity-90 backdrop-blur-sm rounded-xl p-4 border border-gray-700 text-center transform transition-all duration-300 hover:scale-105">
-                    <div className="text-3xl mb-2">{social.icon}</div>
-                    <p
-                      className={`font-semibold bg-gradient-to-r ${social.gradient} bg-clip-text text-transparent`}
-                    >
-                      {social.name}
-                    </p>
-                  </div>
-                </a>
-              ))}
+                  {item.title}
+                </h3>
+                <p className="text-gray-300 text-sm break-words">
+                  {item.value}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Institution Info Card */}
+        <div className="mb-12">
+          <div className="relative group">
+            <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-2xl blur-xl opacity-40"></div>
+            <div className="relative bg-gray-800 bg-opacity-90 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-gray-700">
+              <div className="flex flex-col sm:flex-row sm:items-start gap-4">
+                <div className="text-5xl shrink-0">🏫</div>
+                <div>
+                  <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">
+                    Key Issue Solving School
+                  </h3>
+                  <p className="text-gray-300 leading-relaxed mb-4">
+                    We don't just teach English — we transform students'
+                    confidence, communication, and mindset. Even though we are
+                    an online institution, we make sure every learner receives
+                    real-time support — just like an offline classroom, and even
+                    more effective.
+                  </p>
+                  <div className="h-px bg-gradient-to-r from-cyan-500 to-blue-600 mb-3"></div>
+                  <p className="text-sm text-gray-400">
+                    📍 Type: Online English Learning Institution
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
+        </div>
 
-          {/* RIGHT SIDE - CONTACT FORM */}
-          <div className="relative group">
-            <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-2xl blur-2xl opacity-30"></div>
-            <form
-              onSubmit={handleSubmit(onSubmit)}
-              className="relative bg-gray-800 bg-opacity-90 backdrop-blur-sm rounded-2xl p-8 border border-gray-700 shadow-2xl"
-            >
-              <div className="text-center mb-6">
-                <div className="text-5xl mb-3">💬</div>
-                <h3 className="text-3xl font-bold text-white mb-2">
-                  Send Us a Message
-                </h3>
-                <p className="text-gray-400">
-                  Let's start your journey to English fluency!
-                </p>
-              </div>
-
-              <div className="space-y-5">
-                <div>
-                  <label className="block text-sm font-semibold text-gray-300 mb-2">
-                    Full Name
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="Enter your name"
-                    className="w-full bg-gray-900 bg-opacity-50 border border-gray-600 rounded-lg px-4 py-3 text-white placeholder-gray-500 outline-none focus:ring-2 focus:ring-yellow-400 transition-all duration-300"
-                    {...register("name", { required: true })}
-                  />
+        {/* Social Media Section */}
+        <div className="mb-12">
+          <h3 className="text-2xl md:text-3xl font-bold text-white text-center mb-6">
+            Follow Us On Social Media
+          </h3>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
+            {socialMedia.map((social, index) => (
+              <a
+                key={index}
+                href={social.link}
+                onMouseEnter={() => setHoveredSocial(index)}
+                onMouseLeave={() => setHoveredSocial(null)}
+                className="relative group"
+              >
+                <div
+                  className={`absolute inset-0 bg-gradient-to-r ${social.gradient} rounded-xl blur-lg opacity-50 group-hover:opacity-80 transition-opacity duration-300`}
+                ></div>
+                <div className="relative bg-gray-800 bg-opacity-90 backdrop-blur-sm rounded-xl p-4 border border-gray-700 text-center transform transition-all duration-300 hover:scale-105">
+                  <div
+                    className={`flex items-center justify-center w-12 h-12 mx-auto mb-2 rounded-full bg-gradient-to-r ${social.gradient} text-white transform transition-transform duration-300 ${
+                      hoveredSocial === index ? "scale-110 rotate-6" : ""
+                    }`}
+                  >
+                    {social.icon}
+                  </div>
+                  <p
+                    className={`font-semibold text-sm bg-gradient-to-r ${social.gradient} bg-clip-text text-transparent`}
+                  >
+                    {social.name}
+                  </p>
                 </div>
-
-                <div>
-                  <label className="block text-sm font-semibold text-gray-300 mb-2">
-                    Email Address
-                  </label>
-                  <input
-                    type="email"
-                    placeholder="Enter your email"
-                    className="w-full bg-gray-900 bg-opacity-50 border border-gray-600 rounded-lg px-4 py-3 text-white placeholder-gray-500 outline-none focus:ring-2 focus:ring-yellow-400 transition-all duration-300"
-                    {...register("email", { required: true })}
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-semibold text-gray-300 mb-2">
-                    Phone Number
-                  </label>
-                  <input
-                    type="tel"
-                    placeholder="Enter your phone number"
-                    className="w-full bg-gray-900 bg-opacity-50 border border-gray-600 rounded-lg px-4 py-3 text-white placeholder-gray-500 outline-none focus:ring-2 focus:ring-yellow-400 transition-all duration-300"
-                    {...register("phone")}
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-semibold text-gray-300 mb-2">
-                    Message
-                  </label>
-                  <textarea
-                    placeholder="Write your message here..."
-                    className="w-full bg-gray-900 bg-opacity-50 border border-gray-600 rounded-lg px-4 py-3 h-32 text-white placeholder-gray-500 outline-none resize-none focus:ring-2 focus:ring-yellow-400 transition-all duration-300"
-                    {...register("message")}
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  className="w-full bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-gray-900 font-bold py-4 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
-                >
-                  Send Message 📩
-                </button>
-              </div>
-            </form>
+              </a>
+            ))}
           </div>
         </div>
 
         {/* Bottom CTA */}
         <div className="relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-r from-green-400 via-blue-500 to-purple-500 rounded-3xl blur-2xl opacity-30 animate-pulse"></div>
-          <div className="relative bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl p-8 text-center border-2 border-purple-400">
+          <div className="relative bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl p-6 md:p-8 text-center border-2 border-purple-400">
             <div className="text-5xl mb-4">✨</div>
-            <h3 className="text-3xl font-bold text-white mb-3">
+            <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">
               Join Us & Transform Your English
             </h3>
-            <p className="text-gray-300 text-lg max-w-2xl mx-auto">
+            <p className="text-gray-300 text-base md:text-lg max-w-2xl mx-auto">
               Have a question? Want to join our next course? Or just want to
               know how our reward-based system works?
             </p>

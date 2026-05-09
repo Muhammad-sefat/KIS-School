@@ -7,8 +7,6 @@ import { ImageProvider } from "@/components/common/ImageProvider";
 const Navbar = () => {
   const navItems = [
     { id: 1, name: "Home", path: "/" },
-    { id: 2, name: "About Us", path: "/about-us" },
-    { id: 3, name: "Service", path: "/service" },
     { id: 4, name: "Contact", path: "/contact-us" },
   ];
 

@@ -2,7 +2,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { slideInLeft, slideInRight } from "@/animation/Animation";
+import { slideInBottom } from "@/animation/Animation";
 import { ImageProvider } from "../common/ImageProvider";
 import { Phone, School } from "lucide-react";
 import Title from "../common/Title";
@@ -12,10 +12,11 @@ const OurInovation = () => {
     <div className="section-padding-x py-12 lg:py-24 flex flex-col lg:flex-row gap-6 md:gap-12">
       <motion.div
         className="w-full lg:w-[50%] mx-auto text-center relative"
-        variants={slideInLeft}
+        variants={slideInBottom}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
       >
         <div className="flex gap-2 lg:gap-6">
           <div className="h-[520px] w-[460px] lg:w-[390px] rounded-tr-[70px] rounded-bl-[70px] overflow-hidden">
@@ -49,10 +50,11 @@ const OurInovation = () => {
 
       <motion.div
         className="w-full lg:w-[50%] lg:mt-6"
-        variants={slideInRight}
+        variants={slideInBottom}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
+        transition={{ delay: 0.2, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
       >
         <button className="group flex items-center gap-2 px-2 py-1.5 pr-2 text-sm font-medium border border-theme-primary text-theme-primary hover:bg-theme-secondary hover:text-white hover:border-theme-secondary rounded-full transition-all duration-300 cursor-pointer overflow-hidden">
           <span className="relative flex items-center gap-2">
@@ -65,10 +67,10 @@ const OurInovation = () => {
           </span>
         </button>
 
-        <Title level="title48" className="mt-4 text-theme-primary">
+        <Title level="title48" className="mt-4 text-theme-primary dark:text-white">
           Empowering Learning Through Innovation
         </Title>
-        <Title level="title18" className="mt-4 text-gray">
+        <Title level="title18" className="mt-4 text-gray dark:text-gray-300">
           Our platform offers a wide variety of online classes across different
           subjects, guided by expert instructors.
           <p>
@@ -77,13 +79,13 @@ const OurInovation = () => {
           </p>
         </Title>
         <div className="mt-8 flex flex-row gap-6">
-          <div className="border-r-2 border-dashed pr-6">
-            <h3 className="text-lg lg:text-3xl font-semibold mb-2">2.6k</h3>
-            <p className="text-gray">Successfully Trained</p>
+          <div className="border-r-2 border-dashed pr-6 dark:border-gray-700">
+            <h3 className="text-lg lg:text-3xl font-semibold mb-2 dark:text-white">2.6k</h3>
+            <p className="text-gray dark:text-gray-400">Successfully Trained</p>
           </div>
           <div>
-            <h3 className="text-lg lg:text-3xl font-semibold mb-2">5.6k</h3>
-            <p className="text-gray">Student Community</p>
+            <h3 className="text-lg lg:text-3xl font-semibold mb-2 dark:text-white">5.6k</h3>
+            <p className="text-gray dark:text-gray-400">Student Community</p>
           </div>
         </div>
         <Link to="/sign-in">

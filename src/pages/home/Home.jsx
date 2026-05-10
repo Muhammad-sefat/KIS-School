@@ -17,7 +17,7 @@ const Home = () => {
       {/* <OurRating /> */}
       <CourseCards />
       {/* <OurInovation /> */}
-      <ServiceCard />
+      {/* <ServiceCard /> */}
       {/* <OurInstructor /> */}
       {/* <OurStudentSay /> */}
       <Accordian />

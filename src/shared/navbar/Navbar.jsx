@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { FiMenu, FiX } from "react-icons/fi";
-import { MoveUpRight } from "lucide-react";
+import { Sun, Moon, MoveUpRight } from "lucide-react";
 import { ImageProvider } from "@/components/common/ImageProvider";
+import { useTheme } from "@/context/ThemeContext";
 
 const Navbar = () => {
+  const { theme, toggleTheme } = useTheme();
   const navItems = [
     { id: 1, name: "Home", path: "/" },
     { id: 4, name: "Contact", path: "/contact-us" },
@@ -24,9 +26,8 @@ const Navbar = () => {
 
   return (
     <header
-      className={`fixed w-full z-50 transition-all duration-300 section-padding-x ${
-        scrolled ? "bg-theme-primary shadow-md" : "bg-theme-primary/99"
-      }`}
+      className={`fixed w-full z-50 transition-all duration-300 section-padding-x ${scrolled ? "bg-theme-primary shadow-md" : "bg-theme-primary/99"
+        }`}
     >
       <div className="py-3 flex justify-between items-center">
         {/* Logo */}
@@ -46,8 +47,7 @@ const Navbar = () => {
               key={item.id}
               to={item.path}
               className={({ isActive }) =>
-                `text-sm lg:text-base font-medium transition hover:text-theme-secondary ${
-                  isActive ? "text-theme-secondary" : ""
+                `text-sm lg:text-base font-medium transition hover:text-theme-secondary ${isActive ? "text-theme-secondary" : ""
                 }`
               }
             >
@@ -56,35 +56,40 @@ const Navbar = () => {
           ))}
         </nav>
 
-        {/* Sign Up Button */}
+        {/* Theme Toggle Button */}
         <div className="hidden md:flex">
-          <Link
-            to="/sign-up"
-            className="group flex items-center gap-2 px-4 py-2 text-sm lg:text-base font-medium text-white bg-theme-secondary rounded-full hover:bg-white hover:text-theme-primary transition duration-300"
+          <button
+            onClick={toggleTheme}
+            className="p-2 rounded-full bg-theme-secondary text-white hover:bg-white hover:text-theme-primary transition duration-300 shadow-lg cursor-pointer"
+            aria-label="Toggle Theme"
           >
-            Sign Up
-            <MoveUpRight
-              size={16}
-              className="transform transition-all duration-300 ease-in-out group-hover:translate-x-1 group-hover:rotate-[45deg]"
-            />
-          </Link>
+            {theme === "light" ? <Moon size={20} /> : <Sun size={20} />}
+          </button>
         </div>
 
         {/* Mobile Menu Button */}
-        <button
-          className="md:hidden text-white text-2xl"
-          onClick={toggleMenu}
-          aria-label="Toggle Menu"
-        >
-          {mobileMenuOpen ? <FiX /> : <FiMenu />}
-        </button>
+        <div className="flex items-center gap-4 md:hidden">
+          <button
+            onClick={toggleTheme}
+            className="p-2 rounded-full bg-theme-secondary text-white"
+            aria-label="Toggle Theme"
+          >
+            {theme === "light" ? <Moon size={18} /> : <Sun size={18} />}
+          </button>
+          <button
+            className="text-white text-2xl"
+            onClick={toggleMenu}
+            aria-label="Toggle Menu"
+          >
+            {mobileMenuOpen ? <FiX /> : <FiMenu />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu */}
       <div
-        className={`md:hidden fixed top-0 left-0 w-[260px] h-full bg-theme-primary/95 backdrop-blur-sm text-white transform transition-transform duration-300 z-40 ${
-          mobileMenuOpen ? "translate-x-0" : "-translate-x-full"
-        }`}
+        className={`md:hidden fixed top-0 left-0 w-[260px] h-full bg-theme-primary/95 backdrop-blur-sm text-white transform transition-transform duration-300 z-40 ${mobileMenuOpen ? "translate-x-0" : "-translate-x-full"
+          }`}
       >
         <div className="flex justify-between items-center px-5 py-4 border-b border-white/20">
           <h2 className="font-bold text-lg">KIS School</h2>
@@ -102,17 +107,9 @@ const Navbar = () => {
             </NavLink>
           ))}
         </nav>
-        <div className="px-6 mt-8">
-          <Link
-            to="/sign-up"
-            onClick={closeMenu}
-            className="block text-center bg-theme-secondary py-2 rounded-full font-medium hover:bg-white hover:text-theme-primary transition"
-          >
-            Sign Up
-          </Link>
-        </div>
       </div>
     </header>
+
   );
 };
 

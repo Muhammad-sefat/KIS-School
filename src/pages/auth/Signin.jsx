@@ -17,8 +17,8 @@ const Signin = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-blue-50 px-2 lg:px-4">
-      <div className="w-full max-w-2xl bg-white p-8 rounded-2xl shadow-lg">
+    <div className="min-h-screen flex items-center justify-center bg-blue-50 dark:bg-gray-950 px-2 lg:px-4">
+      <div className="w-full max-w-2xl bg-white dark:bg-gray-900 p-8 rounded-2xl shadow-lg border dark:border-gray-800">
         {/* Logo */}
         <div className="flex justify-center mb-6">
           <Link to="/">
@@ -27,15 +27,15 @@ const Signin = () => {
         </div>
 
         {/* Heading */}
-        <h2 className="text-2xl lg:text-3xl font-bold text-center text-gray-800 mb-2 font-merriweather">
+        <h2 className="text-2xl lg:text-3xl font-bold text-center text-gray-800 dark:text-white mb-2 font-merriweather">
           Welcome Back
         </h2>
-        <p className="text-center text-gray-500 mb-6">Login to your account</p>
+        <p className="text-center text-gray-500 dark:text-gray-400 mb-6">Login to your account</p>
 
         {/* Form */}
         <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
           <div>
-            <label className="text-gray-700 font-medium">Email</label>
+            <label className="text-gray-700 dark:text-gray-300 font-medium">Email</label>
             <input
               type="email"
               placeholder="Enter your email"
@@ -43,8 +43,8 @@ const Signin = () => {
                 required: "Email is required",
                 pattern: { value: /^\S+@\S+\.\S+$/, message: "Invalid email" },
               })}
-              className={`w-full px-4 py-2 mt-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 bg-gray-100 ${
-                errors.email ? "border-red-500" : "border-gray-300"
+              className={`w-full px-4 py-2 mt-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 bg-gray-100 dark:bg-gray-800 dark:text-white ${
+                errors.email ? "border-red-500" : "border-gray-300 dark:border-gray-700"
               }`}
             />
             {errors.email && (
@@ -55,13 +55,13 @@ const Signin = () => {
           </div>
 
           <div className="relative">
-            <label className="text-gray-700 font-medium">Password</label>
+            <label className="text-gray-700 dark:text-gray-300 font-medium">Password</label>
             <input
               type={showPassword ? "text" : "password"}
               placeholder="Enter your password"
               {...register("password", { required: "Password is required" })}
-              className={`w-full px-4 py-2 mt-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 bg-gray-100 ${
-                errors.password ? "border-red-500" : "border-gray-300"
+              className={`w-full px-4 py-2 mt-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 bg-gray-100 dark:bg-gray-800 dark:text-white ${
+                errors.password ? "border-red-500" : "border-gray-300 dark:border-gray-700"
               }`}
             />
             <div
@@ -77,7 +77,7 @@ const Signin = () => {
             )}
           </div>
 
-          <div className="flex items-center justify-between text-sm text-gray-600">
+          <div className="flex items-center justify-between text-sm text-gray-600 dark:text-gray-400">
             <label className="flex items-center gap-2">
               <input type="checkbox" className="mt-1" />
               Remember me

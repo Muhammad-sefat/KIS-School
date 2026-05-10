@@ -128,7 +128,14 @@ const ContactSection = () => {
     >
       <div className="max-w-[1600px] mx-auto">
         {/* Header Section */}
-        <div className="text-center mb-12 md:mb-16">
+        <motion.div
+          variants={slideInBottom}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          className="text-center mb-12 md:mb-16"
+        >
           <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-500 bg-clip-text text-transparent animate-pulse">
             Get in Touch with KISS
           </h2>
@@ -137,14 +144,19 @@ const ContactSection = () => {
             We're here to guide, support, and inspire your English learning
             journey 💬
           </p>
-        </div>
+        </motion.div>
 
         {/* Contact Methods Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-12">
           {contactMethods.map((method, index) => (
-            <a
+            <motion.a
               key={index}
               href={method.link}
+              variants={slideInBottom}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: index * 0.1 }}
               onMouseEnter={() => setHoveredCard(index)}
               onMouseLeave={() => setHoveredCard(null)}
               className="relative group block"
@@ -169,14 +181,22 @@ const ContactSection = () => {
                   {method.value}
                 </p>
               </div>
-            </a>
+            </motion.a>
           ))}
         </div>
 
         {/* Business Info Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
           {businessInfo.map((item, index) => (
-            <div key={index} className="relative group">
+            <motion.div
+              key={index}
+              variants={slideInBottom}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: index * 0.1 }}
+              className="relative group"
+            >
               <div
                 className={`absolute inset-0 bg-gradient-to-r ${item.gradient} rounded-2xl blur-xl opacity-40 group-hover:opacity-65 transition-opacity duration-300`}
               ></div>
@@ -191,12 +211,19 @@ const ContactSection = () => {
                   {item.value}
                 </p>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
 
         {/* Institution Info Card */}
-        <div className="mb-12">
+        <motion.div
+          variants={slideInBottom}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          className="mb-12"
+        >
           <div className="relative group">
             <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-2xl blur-xl opacity-40"></div>
             <div className="relative bg-gray-800 bg-opacity-90 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-gray-700">
@@ -221,18 +248,30 @@ const ContactSection = () => {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Social Media Section */}
-        <div className="mb-12">
+        <motion.div
+          variants={slideInBottom}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          className="mb-12"
+        >
           <h3 className="text-2xl md:text-3xl font-bold text-white text-center mb-6">
             Follow Us On Social Media
           </h3>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
             {socialMedia.map((social, index) => (
-              <a
+              <motion.a
                 key={index}
                 href={social.link}
+                variants={slideInBottom}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: index * 0.1 }}
                 onMouseEnter={() => setHoveredSocial(index)}
                 onMouseLeave={() => setHoveredSocial(null)}
                 className="relative group"
@@ -254,13 +293,20 @@ const ContactSection = () => {
                     {social.name}
                   </p>
                 </div>
-              </a>
+              </motion.a>
             ))}
           </div>
-        </div>
+        </motion.div>
 
         {/* Bottom CTA */}
-        <div className="relative overflow-hidden">
+        <motion.div
+          variants={slideInBottom}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          className="relative overflow-hidden"
+        >
           <div className="absolute inset-0 bg-gradient-to-r from-green-400 via-blue-500 to-purple-500 rounded-3xl blur-2xl opacity-30 animate-pulse"></div>
           <div className="relative bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl p-6 md:p-8 text-center border-2 border-purple-400">
             <div className="text-5xl mb-4">✨</div>
@@ -272,7 +318,7 @@ const ContactSection = () => {
               know how our reward-based system works?
             </p>
           </div>
-        </div>
+        </motion.div>
       </div>
     </motion.section>
   );

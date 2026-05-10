@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { FaChevronDown } from "react-icons/fa6";
 import { motion } from "framer-motion";
-import { slideInLeft, slideInRight } from "@/animation/Animation";
+import { slideInBottom } from "@/animation/Animation";
 import { ImageProvider } from "../common/ImageProvider";
 import Title from "../common/Title";
 
@@ -41,18 +41,19 @@ const Accordian = () => {
     setIsAccordingOpen((prevIndex) => (prevIndex === index ? null : index));
 
   return (
-    <div className="relative section-padding-x py-8 flex flex-col-reverse lg:flex-row items-center gap-12 bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50 overflow-hidden">
+    <div className="relative section-padding-x py-8 flex flex-col-reverse lg:flex-row items-center gap-12 bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden">
       {/* Decorative Background Elements */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
+      <div className="absolute top-0 left-0 w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 dark:opacity-10 animate-pulse"></div>
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 dark:opacity-10 animate-pulse"></div>
 
       {/* Image Section */}
       <motion.div
         className="w-full lg:w-[50%] relative z-10"
-        variants={slideInLeft}
+        variants={slideInBottom}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
+        transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
       >
         <div className="relative">
           <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-purple-500 rounded-3xl blur-2xl opacity-20"></div>
@@ -67,10 +68,11 @@ const Accordian = () => {
       {/* FAQ Section */}
       <motion.div
         className="w-full lg:w-[50%] relative z-10"
-        variants={slideInRight}
+        variants={slideInBottom}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true}}
+        viewport={{ once: true }}
+        transition={{ delay: 0.2, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
       >
         <div className="mb-6">
           <div className="inline-block mb-4">
@@ -84,7 +86,7 @@ const Accordian = () => {
           >
             Frequently Asked Questions
           </Title>
-          <p className="text-gray-600 mt-2 w-full md:w-[80%] text-lg">
+          <p className="text-gray-600 dark:text-gray-300 mt-2 w-full md:w-[80%] text-lg">
             Have questions? Find quick answers to common inquiries about our
             insurance plans, claims, payments, and more. Need help? Our support
             team is always here for you.
@@ -95,7 +97,7 @@ const Accordian = () => {
           {accordingData?.map((according, index) => (
             <article
               key={index}
-              className="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden"
+              className="group relative bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden"
             >
               {/* Gradient Border Effect */}
               <div
@@ -104,7 +106,7 @@ const Accordian = () => {
                 }`}
                 style={{ padding: "2px" }}
               >
-                <div className="absolute inset-[2px] bg-white rounded-2xl"></div>
+                <div className="absolute inset-[2px] bg-white dark:bg-gray-800 rounded-2xl"></div>
               </div>
 
               {/* Content */}
@@ -117,7 +119,7 @@ const Accordian = () => {
                     className={`font-semibold text-lg transition-colors duration-300 ${
                       isAccordingOpen === index
                         ? "text-blue-600"
-                        : "text-gray-800 group-hover:text-blue-600"
+                        : "text-gray-800 dark:text-white group-hover:text-blue-600"
                     }`}
                   >
                     {according.title}
@@ -141,11 +143,11 @@ const Accordian = () => {
                 <div
                   className={`grid transition-all duration-300 overflow-hidden ease-in-out ${
                     isAccordingOpen === index
-                      ? "grid-rows-[1fr] opacity-100 mt-4 pt-4 border-t border-gray-100"
+                      ? "grid-rows-[1fr] opacity-100 mt-4 pt-4 border-t border-gray-100 dark:border-gray-700"
                       : "grid-rows-[0fr] opacity-0"
                   }`}
                 >
-                  <p className="text-gray-700 dark:text-[#abc2d3] text-base leading-relaxed overflow-hidden">
+                  <p className="text-gray-700 dark:text-gray-300 text-base leading-relaxed overflow-hidden">
                     {according.description}
                   </p>
                 </div>

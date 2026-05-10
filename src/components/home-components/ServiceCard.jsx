@@ -1,5 +1,6 @@
-/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
+import { motion } from "framer-motion";
+import { slideInBottom } from "@/animation/Animation";
 import {
   ChevronLeft,
   ChevronRight,
@@ -85,10 +86,10 @@ const ServiceCard = () => {
   };
 
   return (
-    <div className="bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 py-6 lg:py-12 px-4 relative overflow-hidden">
+    <div className="bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-6 lg:py-12 px-4 relative overflow-hidden">
       {/* Decorative Background */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
+      <div className="absolute top-0 left-0 w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 dark:opacity-10 animate-pulse"></div>
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 dark:opacity-10 animate-pulse"></div>
 
       <div className="section-padding-x relative z-10">
         {/* Section Title */}
@@ -101,7 +102,7 @@ const ServiceCard = () => {
           <h1 className="text-4xl lg:text-5xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-2">
             Master English with Confidence
           </h1>
-          <p className="text-gray-600 text-lg">
+          <p className="text-gray-600 dark:text-gray-300 text-lg">
             Explore our English learning programs tailored for every academic
             level.
           </p>
@@ -110,8 +111,13 @@ const ServiceCard = () => {
         {/* Cards Grid - Responsive */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-6xl mx-auto mb-10">
           {courses.map((course, index) => (
-            <div
+            <motion.div
               key={index}
+              variants={slideInBottom}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: index * 0.1 }}
               onMouseEnter={() => setHoveredCard(index)}
               onMouseLeave={() => setHoveredCard(null)}
               className="relative group"
@@ -122,7 +128,7 @@ const ServiceCard = () => {
               ></div>
 
               {/* Card */}
-              <div className="relative bg-white rounded-3xl shadow-xl overflow-hidden transform transition-all duration-500 hover:scale-105 hover:-translate-y-2">
+              <div className="relative bg-white dark:bg-gray-800 rounded-3xl shadow-xl overflow-hidden transform transition-all duration-500 hover:scale-105 hover:-translate-y-2">
                 {/* Image Section */}
                 <div className="relative overflow-hidden h-56">
                   <img
@@ -151,21 +157,21 @@ const ServiceCard = () => {
                 {/* Content Section */}
                 <div className="p-6">
                   {/* Title & Instructor */}
-                  <h3 className="text-xl lg:text-2xl font-bold text-gray-800 mb-2 group-hover:text-blue-600 transition-colors leading-snug">
+                  <h3 className="text-xl lg:text-2xl font-bold text-gray-800 dark:text-white mb-2 group-hover:text-blue-600 transition-colors leading-snug">
                     {course.title}
                   </h3>
-                  <p className="text-gray-500 text-sm mb-4 flex items-center gap-2">
+                  <p className="text-gray-500 dark:text-gray-400 text-sm mb-4 flex items-center gap-2">
                     <Award size={16} className="text-purple-500" />
                     {course.instructor}
                   </p>
 
                   {/* Duration Info */}
-                  <div className="flex items-center gap-4 mb-5 pb-5 border-b border-gray-200">
-                    <div className="flex items-center gap-2 text-gray-600 text-sm">
+                  <div className="flex items-center gap-4 mb-5 pb-5 border-b border-gray-200 dark:border-gray-700">
+                    <div className="flex items-center gap-2 text-gray-600 dark:text-gray-300 text-sm">
                       <Clock size={18} className="text-blue-500" />
                       <span className="font-medium">{course.duration}</span>
                     </div>
-                    <div className="flex items-center gap-2 text-gray-600 text-sm">
+                    <div className="flex items-center gap-2 text-gray-600 dark:text-gray-300 text-sm">
                       <BookOpen size={18} className="text-purple-500" />
                       <span className="font-medium">{course.lessons}</span>
                     </div>
@@ -173,7 +179,7 @@ const ServiceCard = () => {
 
                   {/* Base Features */}
                   <div className="mb-4">
-                    <h4 className="text-sm font-bold text-gray-800 mb-3 flex items-center gap-2">
+                    <h4 className="text-sm font-bold text-gray-800 dark:text-white mb-3 flex items-center gap-2">
                       <span className="w-1 h-5 bg-gradient-to-b from-blue-500 to-purple-500 rounded"></span>
                       Course Features
                     </h4>
@@ -183,7 +189,7 @@ const ServiceCard = () => {
                         return (
                           <li
                             key={i}
-                            className="flex items-start gap-2 text-sm text-gray-700 group/item"
+                            className="flex items-start gap-2 text-sm text-gray-700 dark:text-gray-300 group/item"
                           >
                             <Icon
                               size={16}
@@ -197,8 +203,8 @@ const ServiceCard = () => {
                   </div>
 
                   {/* Extra Features */}
-                  <div className="mb-6 p-4 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl">
-                    <h4 className="text-sm font-bold text-gray-800 mb-2 flex items-center gap-2">
+                  <div className="mb-6 p-4 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-gray-700 dark:to-gray-800 rounded-xl">
+                    <h4 className="text-sm font-bold text-gray-800 dark:text-white mb-2 flex items-center gap-2">
                       <span className="text-purple-500">✨</span>
                       Extra Features
                     </h4>
@@ -206,7 +212,7 @@ const ServiceCard = () => {
                       {course.extra.map((e, i) => (
                         <li
                           key={i}
-                          className="flex items-start gap-2 text-sm text-gray-700"
+                          className="flex items-start gap-2 text-sm text-gray-700 dark:text-gray-300"
                         >
                           <span className="text-purple-500 mt-0.5">•</span>
                           <span>{e}</span>
@@ -216,7 +222,7 @@ const ServiceCard = () => {
                   </div>
 
                   {/* Price & CTA */}
-                  <div className="flex items-center justify-between pt-4 border-t border-gray-200">
+                  <div className="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700">
                     <div>
                       <div className="flex items-baseline gap-2">
                         <span className="text-2xl lg:text-3xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
@@ -250,7 +256,7 @@ const ServiceCard = () => {
                   }`}
                 ></div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
 

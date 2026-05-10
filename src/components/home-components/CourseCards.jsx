@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import { slideInBottom } from "@/animation/Animation";
 
 const ENROLL_URL = "https://forms.gle/gDvnNA5KD7V5cdVQ8";
 
@@ -135,10 +136,11 @@ export default function CourseCards() {
   const row3 = courses.slice(6, 8);
   const Card = ({ course, index }) => (
     <motion.div
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      variants={slideInBottom}
+      initial="hidden"
+      whileInView="visible"
       viewport={{ once: true, amount: 0.1 }}
-      transition={{ duration: 0.6, delay: index * 0.1 }}
+      transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: index * 0.1 }}
       className="relative group flex flex-col"
     >
       {/* Glow */}
@@ -293,10 +295,11 @@ export default function CourseCards() {
         {/* Animated Header */}
         <div className="text-center mb-14">
           <motion.h1
-            initial={{ opacity: 0, y: -20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            variants={slideInBottom}
+            initial="hidden"
+            whileInView="visible"
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
             className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-500 bg-clip-text text-transparent"
           >
             Our Course Plans
@@ -355,8 +358,17 @@ export default function CourseCards() {
         {/* Viva Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
           {vivaCards.map((viva, index) => (
-            <div
+            <motion.div
               key={index}
+              variants={slideInBottom}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{
+                duration: 0.9,
+                ease: [0.22, 1, 0.36, 1],
+                delay: index * 0.1,
+              }}
               onMouseEnter={() => setHoveredVivaIndex(index)}
               onMouseLeave={() => setHoveredVivaIndex(null)}
               className="relative group"
@@ -364,7 +376,7 @@ export default function CourseCards() {
               {/* Glowing Effect */}
               <div
                 className={`absolute inset-0 bg-gradient-to-br ${viva.color} rounded-2xl blur-xl opacity-40 group-hover:opacity-70 transition-opacity duration-300`}
-              ></div>
+              />
 
               {/* Card */}
               <div className="relative bg-gray-800 bg-opacity-90 backdrop-blur-sm rounded-2xl p-6 border border-gray-700 transform transition-all duration-300 hover:scale-105">
@@ -382,37 +394,43 @@ export default function CourseCards() {
                 <h3 className="text-2xl font-bold mb-3 text-white pr-12">
                   {viva.type}
                 </h3>
+
                 <p className="text-sm text-gray-400 mb-6">{viva.description}</p>
 
                 {/* Stats */}
                 <div className="space-y-3">
                   <div className="flex justify-between items-center p-3 bg-gray-900 bg-opacity-50 rounded-lg">
                     <span className="text-sm text-gray-400">Reward:</span>
+
                     <span
                       className={`font-bold text-lg bg-gradient-to-r ${viva.color} bg-clip-text text-transparent`}
                     >
                       {viva.reward} ৳
                     </span>
                   </div>
+
                   <div className="flex justify-between items-center p-3 bg-gray-900 bg-opacity-50 rounded-lg">
                     <span className="text-sm text-gray-400">Sessions:</span>
+
                     <span className="font-bold text-white">
                       {viva.sessions}
                     </span>
                   </div>
+
                   <div
                     className={`flex justify-between items-center p-4 bg-gradient-to-r ${viva.color} rounded-lg shadow-lg`}
                   >
                     <span className="text-sm font-semibold text-gray-900">
                       Total Amount:
                     </span>
+
                     <span className="font-bold text-2xl text-gray-900">
                       {viva.total} ৳
                     </span>
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
 

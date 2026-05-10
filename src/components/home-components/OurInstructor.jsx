@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import { ImageProvider } from "../common/ImageProvider";
 import Title from "../common/Title";
 import { Navigation } from "swiper/modules";
+import { motion } from "framer-motion";
+import { slideInBottom } from "@/animation/Animation";
 
 const instructors = [
   {
@@ -109,7 +111,14 @@ const instructors = [
 const OurInstructor = () => {
   const swiperRef = useRef(null);
   return (
-    <div className="section-padding-x py-6 lg:py-12 relative">
+    <motion.div
+      variants={slideInBottom}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.1 }}
+      transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+      className="section-padding-x py-6 lg:py-12 relative"
+    >
       <button className="group flex items-center gap-2 px-3 py-1 text-sm font-medium border border-theme-primary text-theme-secondary hover:bg-theme-secondary hover:text-white hover:border-theme-secondary rounded-full transition-all duration-300 cursor-pointer overflow-hidden">
         <span className="relative flex items-center gap-2">
           <img
@@ -208,7 +217,7 @@ const OurInstructor = () => {
           />
         </p>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

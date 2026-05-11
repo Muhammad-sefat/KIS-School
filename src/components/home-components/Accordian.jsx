@@ -5,37 +5,34 @@ import { motion } from "framer-motion";
 import { slideInBottom } from "@/animation/Animation";
 import { ImageProvider } from "../common/ImageProvider";
 import Title from "../common/Title";
-
-export const accordingData = [
-  {
-    title: "What is KIS School?",
-    description:
-      "KIS School is an online learning platform focused on improving your English communication, grammar, writing, and speaking skills through interactive courses and live sessions.",
-  },
-  {
-    title: "How can I start learning English on KIS School?",
-    description:
-      "Simply create an account, choose your desired English course, and start learning right away. You can study at your own pace and revisit lessons anytime.",
-  },
-  {
-    title: "Do I get a certificate after completing a course?",
-    description:
-      "Yes! After successfully finishing a course, you'll receive a verified certificate from KIS School that you can share with employers or add to your resume.",
-  },
-  {
-    title: "Are the classes suitable for beginners?",
-    description:
-      "Absolutely. Our beginner-friendly English courses cover basic grammar, vocabulary, and pronunciation to help you build confidence step by step.",
-  },
-  {
-    title: "Can I join live English speaking sessions?",
-    description:
-      "Yes, KIS School offers live English speaking practice sessions with instructors to help you improve fluency and confidence in real-time conversations.",
-  },
-];
+import { useTranslation } from "react-i18next";
 
 const Accordian = () => {
+  const { t } = useTranslation();
   const [isAccordingOpen, setIsAccordingOpen] = useState(0);
+
+  const accordingData = [
+    {
+      title: t("What is KIS School?"),
+      description: t("KIS School Desc"),
+    },
+    {
+      title: t("How can I start learning?"),
+      description: t("How can I start learning Desc"),
+    },
+    {
+      title: t("Do I get a certificate?"),
+      description: t("Do I get a certificate Desc"),
+    },
+    {
+      title: t("Are the classes suitable for beginners?"),
+      description: t("Suitable for beginners Desc"),
+    },
+    {
+      title: t("Join live sessions?"),
+      description: t("Join live sessions Desc"),
+    },
+  ];
 
   const handleClick = (index) =>
     setIsAccordingOpen((prevIndex) => (prevIndex === index ? null : index));
@@ -77,19 +74,17 @@ const Accordian = () => {
         <div className="mb-6">
           <div className="inline-block mb-4">
             <span className="px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white text-sm font-semibold rounded-full shadow-lg">
-              ❓ FAQ
+              ❓ {t("FAQ")}
             </span>
           </div>
           <Title
             level="title48"
             className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent"
           >
-            Frequently Asked Questions
+            {t("Frequently Asked Questions")}
           </Title>
           <p className="text-gray-600 dark:text-gray-300 mt-2 w-full md:w-[80%] text-lg">
-            Have questions? Find quick answers to common inquiries about our
-            insurance plans, claims, payments, and more. Need help? Our support
-            team is always here for you.
+            {t("FAQ Description")}
           </p>
         </div>
 

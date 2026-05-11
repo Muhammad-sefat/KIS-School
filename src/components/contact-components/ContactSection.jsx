@@ -2,22 +2,24 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { slideInBottom } from "@/animation/Animation";
+import { useTranslation } from "react-i18next";
 
 const ContactSection = () => {
+  const { t } = useTranslation();
   const [hoveredCard, setHoveredCard] = useState(null);
   const [hoveredSocial, setHoveredSocial] = useState(null);
 
   const contactMethods = [
     {
       icon: "📞",
-      title: "Phone / WhatsApp",
+      title: t("Phone WhatsApp"),
       value: "01796373902",
       gradient: "from-green-500 to-teal-600",
       link: "tel:01796373902",
     },
     {
       icon: "✉️",
-      title: "Email",
+      title: t("Email"),
       value: "contactkeyissuesolvingschool@gmail.com",
       gradient: "from-blue-500 to-indigo-600",
       link: "mailto:contactkeyissuesolvingschool@gmail.com",
@@ -27,20 +29,20 @@ const ContactSection = () => {
   const businessInfo = [
     {
       icon: "🏛️",
-      title: "Trade Licence No.",
+      title: t("Trade License"),
       value: "TRADE-2024-KISS-00782",
       gradient: "from-amber-500 to-yellow-600",
     },
     {
       icon: "📋",
-      title: "Registration No.",
+      title: t("Registration No"),
       value: "REG-BD-KISS-20240015",
       gradient: "from-rose-500 to-pink-600",
     },
     {
       icon: "📍",
-      title: "Office Location",
-      value: "Mirpur-10, Dhaka-1216, Bangladesh",
+      title: t("Office Location"),
+      value: t("Office Value"),
       gradient: "from-cyan-500 to-blue-600",
     },
   ];
@@ -137,12 +139,11 @@ const ContactSection = () => {
           className="text-center mb-12 md:mb-16"
         >
           <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-500 bg-clip-text text-transparent animate-pulse">
-            Get in Touch with KISS
+            {t("Get in Touch")}
           </h2>
           <div className="h-1 w-32 mx-auto bg-gradient-to-r from-yellow-400 to-purple-500 rounded-full mb-6"></div>
           <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto px-4">
-            We're here to guide, support, and inspire your English learning
-            journey 💬
+            {t("Contact Description")}
           </p>
         </motion.div>
 
@@ -231,18 +232,14 @@ const ContactSection = () => {
                 <div className="text-5xl shrink-0">🏫</div>
                 <div>
                   <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">
-                    Key Issue Solving School
+                    {t("Institutional Heading")}
                   </h3>
                   <p className="text-gray-300 leading-relaxed mb-4">
-                    We don't just teach English — we transform students'
-                    confidence, communication, and mindset. Even though we are
-                    an online institution, we make sure every learner receives
-                    real-time support — just like an offline classroom, and even
-                    more effective.
+                    {t("Institutional Description")}
                   </p>
                   <div className="h-px bg-gradient-to-r from-cyan-500 to-blue-600 mb-3"></div>
                   <p className="text-sm text-gray-400">
-                    📍 Type: Online English Learning Institution
+                    📍 {t("Institution Type")}
                   </p>
                 </div>
               </div>
@@ -260,7 +257,7 @@ const ContactSection = () => {
           className="mb-12"
         >
           <h3 className="text-2xl md:text-3xl font-bold text-white text-center mb-6">
-            Follow Us On Social Media
+            {t("Follow Us")}
           </h3>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
             {socialMedia.map((social, index) => (
@@ -311,11 +308,10 @@ const ContactSection = () => {
           <div className="relative bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl p-6 md:p-8 text-center border-2 border-purple-400">
             <div className="text-5xl mb-4">✨</div>
             <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">
-              Join Us & Transform Your English
+              {t("Join Us CTA")}
             </h3>
             <p className="text-gray-300 text-base md:text-lg max-w-2xl mx-auto">
-              Have a question? Want to join our next course? Or just want to
-              know how our reward-based system works?
+              {t("CTA Description")}
             </p>
           </div>
         </motion.div>

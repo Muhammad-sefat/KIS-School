@@ -1,16 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { FiMenu, FiX } from "react-icons/fi";
-import { Sun, Moon, MoveUpRight } from "lucide-react";
+import { Sun, Moon, MoveUpRight, Languages } from "lucide-react";
 import { ImageProvider } from "@/components/common/ImageProvider";
 import { useTheme } from "@/context/ThemeContext";
+import { useTranslation } from "react-i18next";
 
 const Navbar = () => {
   const { theme, toggleTheme } = useTheme();
+  const { t, i18n } = useTranslation();
+
   const navItems = [
-    { id: 1, name: "Home", path: "/" },
-    { id: 4, name: "Contact", path: "/contact-us" },
+    { id: 1, name: t("Home"), path: "/" },
+    { id: 4, name: t("Contact"), path: "/contact-us" },
   ];
+
+  const toggleLanguage = () => {
+    const newLang = i18n.language === "bn" ? "en" : "bn";
+    i18n.changeLanguage(newLang);
+  };
 
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -56,8 +64,15 @@ const Navbar = () => {
           ))}
         </nav>
 
-        {/* Theme Toggle Button */}
-        <div className="hidden md:flex">
+        {/* Theme & Language Toggle Button */}
+        <div className="hidden md:flex items-center gap-3">
+          <button
+            onClick={toggleLanguage}
+            className="px-3 py-1.5 rounded-lg bg-white/10 text-white hover:bg-theme-secondary transition duration-300 shadow-lg cursor-pointer flex items-center gap-2 text-sm font-medium border border-white/20"
+          >
+            <Languages size={18} />
+            {i18n.language === "bn" ? "English" : "বাংলা"}
+          </button>
           <button
             onClick={toggleTheme}
             className="p-2 rounded-full bg-theme-secondary text-white hover:bg-white hover:text-theme-primary transition duration-300 shadow-lg cursor-pointer"
@@ -68,7 +83,13 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Menu Button */}
-        <div className="flex items-center gap-4 md:hidden">
+        <div className="flex items-center gap-2 md:hidden">
+          <button
+            onClick={toggleLanguage}
+            className="p-1.5 rounded-lg bg-white/10 text-white border border-white/20 text-xs font-medium"
+          >
+            {i18n.language === "bn" ? "EN" : "বাংলা"}
+          </button>
           <button
             onClick={toggleTheme}
             className="p-2 rounded-full bg-theme-secondary text-white"
@@ -77,7 +98,7 @@ const Navbar = () => {
             {theme === "light" ? <Moon size={18} /> : <Sun size={18} />}
           </button>
           <button
-            className="text-white text-2xl"
+            className="text-white text-2xl ml-1"
             onClick={toggleMenu}
             aria-label="Toggle Menu"
           >

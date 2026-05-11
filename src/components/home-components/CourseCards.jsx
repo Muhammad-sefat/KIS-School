@@ -2,135 +2,178 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { slideInBottom } from "@/animation/Animation";
+import { useTranslation } from "react-i18next";
 
 const ENROLL_URL = "https://forms.gle/gDvnNA5KD7V5cdVQ8";
 
-const courses = [
-  {
-    classLabel: "Class 3",
-    title: "Foundation Builders",
-    description:
-      "Start your English journey with the essentials. Build a rock-solid base in grammar, basic vocabulary, and simple spoken sentences — the first step to fluency.",
-    features: [
-      "Core Grammar Rules",
-      "Basic Speaking Practice",
-      "Intro Writing Tasks",
-    ],
-    price: "৳ 1,200",
-    gradient: "from-sky-500 to-blue-700",
-    badge: "Beginner",
-    icon: "🌱",
-  },
-  {
-    classLabel: "Class 4",
-    title: "Word Power Ignition",
-    description:
-      "Fuel your vocabulary engine. Learn 20 new words every week, apply them in speaking sessions, and craft short structured writing tasks with teacher feedback.",
-    features: [
-      "Vocabulary Expansion",
-      "Spoken Word Practice",
-      "Short Writing Tasks",
-    ],
-    price: "৳ 1,200",
-    gradient: "from-violet-500 to-purple-700",
-    badge: "Beginner",
-    icon: "🔤",
-  },
-  {
-    classLabel: "Class 5",
-    title: "Sentence Architects",
-    description:
-      "Move beyond single words — learn to construct meaningful sentences. Master sentence structure, practice speaking in full sentences, and write coherent paragraphs.",
-    features: [
-      "Sentence Structure",
-      "Speaking in Full Sentences",
-      "Paragraph Writing",
-    ],
-    price: "৳ 1,400",
-    gradient: "from-emerald-500 to-teal-700",
-    badge: "Elementary",
-    icon: "🏗️",
-  },
-  {
-    classLabel: "Class 6",
-    title: "Confident Communicators",
-    description:
-      "Step into the real world of communication. This level pushes your grammar deeper, develops confident oral delivery, and introduces topic-based writing with 5-point feedback.",
-    features: [
-      "Advanced Grammar Topics",
-      "Topic-Based Speaking",
-      "Feedback-Driven Writing",
-    ],
-    price: "৳ 1,600",
-    gradient: "from-orange-500 to-red-600",
-    badge: "Pre-Intermediate",
-    icon: "🗣️",
-  },
-  {
-    classLabel: "Class 7",
-    title: "Expression Masters",
-    description:
-      "Express opinions, tell stories, and write with clarity. Weekly Language Club sessions put your skills to the test alongside peers in a live speaking environment.",
-    features: [
-      "Opinion & Story Speaking",
-      "Language Club Sessions",
-      "Creative Writing",
-    ],
-    price: "৳ 1,800",
-    gradient: "from-pink-500 to-rose-700",
-    badge: "Pre-Intermediate",
-    icon: "🎭",
-  },
-  {
-    classLabel: "Class 8",
-    title: "Presentation Pro",
-    description:
-      "Deliver video presentations without scripts, receive structured improvement feedback, and rewrite your work — all while earning rewards for meeting quality standards.",
-    features: [
-      "Script-Free Presentations",
-      "5-Point Improvement Feedback",
-      "Structured Rewriting",
-    ],
-    price: "৳ 2,000",
-    gradient: "from-cyan-500 to-indigo-700",
-    badge: "Intermediate",
-    icon: "🎥",
-  },
-  {
-    classLabel: "Class 9",
-    title: "Fluency Accelerator",
-    description:
-      "Intensive listening, rapid vocabulary sessions, and viva-style assessments every week sharpen your reflexes and move you closer to natural, effortless English.",
-    features: [
-      "Listening Comprehension",
-      "Speed Vocabulary Viva",
-      "Reflex Speaking Drills",
-    ],
-    price: "৳ 2,200",
-    gradient: "from-amber-500 to-yellow-600",
-    badge: "Upper Intermediate",
-    icon: "⚡",
-  },
-  {
-    classLabel: "Class 10",
-    title: "Mastery & Beyond",
-    description:
-      "The pinnacle of the KISS program. Demonstrate total command of grammar, writing, and speaking through comprehensive vivas, a final presentation, and a capstone writing project.",
-    features: [
-      "Comprehensive Final Viva",
-      "Capstone Presentation",
-      "Advanced Writing Project",
-    ],
-    price: "৳ 2,500",
-    gradient: "from-fuchsia-500 to-purple-800",
-    badge: "Advanced",
-    icon: "👑",
-  },
-];
-
 export default function CourseCards() {
+  const { t } = useTranslation();
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const [hoveredVivaIndex, setHoveredVivaIndex] = useState(null);
+
+  const courses = [
+    {
+      classLabel: t("Class 3"),
+      title: t("Foundation Builders"),
+      description: t("Class 3 Description"),
+      features: [
+        t("Core Grammar Rules"),
+        t("Basic Speaking Practice"),
+        t("Intro Writing Tasks"),
+      ],
+      price: `৳ 1,200`,
+      gradient: "from-sky-500 to-blue-700",
+      badge: t("Beginner"),
+      icon: "🌱",
+    },
+    {
+      classLabel: t("Class 4"),
+      title: t("Word Power Ignition"),
+      description: t("Class 4 Description"),
+      features: [
+        t("Vocabulary Expansion"),
+        t("Spoken Word Practice"),
+        t("Short Writing Tasks"),
+      ],
+      price: `৳ 1,200`,
+      gradient: "from-violet-500 to-purple-700",
+      badge: t("Beginner"),
+      icon: "🔤",
+    },
+    {
+      classLabel: t("Class 5"),
+      title: t("Sentence Architects"),
+      description: t("Class 5 Description"),
+      features: [
+        t("Sentence Structure"),
+        t("Speaking in Full Sentences"),
+        t("Paragraph Writing"),
+      ],
+      price: `৳ 1,400`,
+      gradient: "from-emerald-500 to-teal-700",
+      badge: t("Elementary"),
+      icon: "🏗️",
+    },
+    {
+      classLabel: t("Class 6"),
+      title: t("Confident Communicators"),
+      description: t("Class 6 Description"),
+      features: [
+        t("Advanced Grammar Topics"),
+        t("Topic-Based Speaking"),
+        t("Feedback-Driven Writing"),
+      ],
+      price: `৳ 1,600`,
+      gradient: "from-orange-500 to-red-600",
+      badge: t("Pre-Intermediate"),
+      icon: "🗣️",
+    },
+    {
+      classLabel: t("Class 7"),
+      title: t("Expression Masters"),
+      description: t("Class 7 Description"),
+      features: [
+        t("Opinion & Story Speaking"),
+        t("Language Club Sessions"),
+        t("Creative Writing"),
+      ],
+      price: `৳ 1,800`,
+      gradient: "from-pink-500 to-rose-700",
+      badge: t("Pre-Intermediate"),
+      icon: "🎭",
+    },
+    {
+      classLabel: t("Class 8"),
+      title: t("Presentation Pro"),
+      description: t("Class 8 Description"),
+      features: [
+        t("Script-Free Presentations"),
+        t("5-Point Improvement Feedback"),
+        t("Structured Rewriting"),
+      ],
+      price: `৳ 2,000`,
+      gradient: "from-cyan-500 to-indigo-700",
+      badge: t("Intermediate"),
+      icon: "🎥",
+    },
+    {
+      classLabel: t("Class 9"),
+      title: t("Fluency Accelerator"),
+      description: t("Class 9 Description"),
+      features: [
+        t("Listening Comprehension"),
+        t("Speed Vocabulary Viva"),
+        t("Reflex Speaking Drills"),
+      ],
+      price: `৳ 2,200`,
+      gradient: "from-amber-500 to-yellow-600",
+      badge: t("Upper Intermediate"),
+      icon: "⚡",
+    },
+    {
+      classLabel: t("Class 10"),
+      title: t("Mastery & Beyond"),
+      description: t("Class 10 Description"),
+      features: [
+        t("Comprehensive Final Viva"),
+        t("Capstone Presentation"),
+        t("Advanced Writing Project"),
+      ],
+      price: `৳ 2,500`,
+      gradient: "from-fuchsia-500 to-purple-800",
+      badge: t("Advanced"),
+      icon: "👑",
+    },
+  ];
+
+  const vivaCards = [
+    {
+      type: t("Class-wise Viva"),
+      description: t("Class-wise Viva Desc"),
+      reward: "100",
+      sessions: "50",
+      total: "5,000",
+      icon: "📝",
+      color: "from-blue-400 to-blue-600",
+    },
+    {
+      type: t("Every 5 Classes"),
+      description: t("Every 5 Classes Desc"),
+      reward: "150",
+      sessions: "10",
+      total: "1,500",
+      icon: "⭐",
+      color: "from-purple-400 to-purple-600",
+    },
+    {
+      type: t("Every 10 Classes"),
+      description: t("Every 10 Classes Desc"),
+      reward: "200",
+      sessions: "5",
+      total: "1,000",
+      icon: "🎯",
+      color: "from-green-400 to-green-600",
+    },
+    {
+      type: t("Every 20 Classes"),
+      description: t("Every 20 Classes Desc"),
+      reward: "500",
+      sessions: "2",
+      total: "1,000",
+      icon: "🏆",
+      color: "from-orange-400 to-orange-600",
+    },
+    {
+      type: t("Final Viva"),
+      description: t("Final Viva Desc"),
+      reward: "1,500",
+      sessions: "1",
+      total: "1,500",
+      icon: "👑",
+      color: "from-yellow-400 to-yellow-600",
+    },
+  ];
+
   const row1 = courses.slice(0, 3);
   const row2 = courses.slice(3, 6);
   const row3 = courses.slice(6, 8);
@@ -140,7 +183,11 @@ export default function CourseCards() {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.1 }}
-      transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: index * 0.1 }}
+      transition={{
+        duration: 0.9,
+        ease: [0.22, 1, 0.36, 1],
+        delay: index * 0.1,
+      }}
       className="relative group flex flex-col"
     >
       {/* Glow */}
@@ -227,7 +274,7 @@ export default function CourseCards() {
             rel="noopener noreferrer"
             className={`px-5 py-2.5 bg-gradient-to-r ${course.gradient} text-white font-bold rounded-full shadow-lg hover:shadow-xl transform transition-all duration-300 hover:scale-105 text-sm whitespace-nowrap`}
           >
-            Enroll Now →
+            {t("Enroll Now")} →
           </a>
         </div>
 
@@ -240,54 +287,6 @@ export default function CourseCards() {
       </div>
     </motion.div>
   );
-
-  const vivaCards = [
-    {
-      type: "Class-wise Viva",
-      description: "After each class (based on last lesson)",
-      reward: "100",
-      sessions: "50",
-      total: "5,000",
-      icon: "📝",
-      color: "from-blue-400 to-blue-600",
-    },
-    {
-      type: "Every 5 Classes",
-      description: "Based on last five lessons",
-      reward: "150",
-      sessions: "10",
-      total: "1,500",
-      icon: "⭐",
-      color: "from-purple-400 to-purple-600",
-    },
-    {
-      type: "Every 10 Classes",
-      description: "Based on last ten lessons",
-      reward: "200",
-      sessions: "5",
-      total: "1,000",
-      icon: "🎯",
-      color: "from-green-400 to-green-600",
-    },
-    {
-      type: "Every 20 Classes",
-      description: "Based on last twenty lessons",
-      reward: "500",
-      sessions: "2",
-      total: "1,000",
-      icon: "🏆",
-      color: "from-orange-400 to-orange-600",
-    },
-    {
-      type: "Final Viva",
-      description: "Comprehensive test",
-      reward: "1,500",
-      sessions: "1",
-      total: "1,500",
-      icon: "👑",
-      color: "from-yellow-400 to-yellow-600",
-    },
-  ];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-indigo-900 to-purple-900 py-8 lg:py-12">
@@ -302,14 +301,13 @@ export default function CourseCards() {
             transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
             className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-500 bg-clip-text text-transparent"
           >
-            Our Course Plans
+            {t("Our Course Plans")}
           </motion.h1>
           <div className="h-1 w-32 mx-auto bg-gradient-to-r from-yellow-400 to-purple-500 rounded-full mb-5" />
           <p className="text-gray-300 text-lg max-w-2xl mx-auto">
-            From Class 3 to Class 10 — every level is crafted to build your
-            grammar, speaking, and writing skills together.{" "}
+            {t("Course Header Description")}{" "}
             <span className="text-yellow-400 font-semibold">
-              3 sessions per week · 12 classes per month.
+              {t("Course Session Info")}
             </span>
           </p>
         </div>
@@ -342,7 +340,7 @@ export default function CourseCards() {
           <div className="relative bg-gradient-to-r from-yellow-400 to-orange-500 rounded-3xl p-8 text-center shadow-2xl">
             <div className="text-6xl mb-4">💰</div>
             <p className="text-3xl font-bold text-gray-900">
-              Earn up to 100 Taka per class based on performance!
+              {t("Earn Per Class")}
             </p>
           </div>
         </div>
@@ -350,7 +348,7 @@ export default function CourseCards() {
         {/* Viva Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-6xl font-bold mb-4 bg-gradient-to-r from-green-400 via-blue-500 to-purple-500 bg-clip-text text-transparent animate-pulse">
-            Viva & Reward Structure
+            {t("Viva Reward Structure")}
           </h2>
           <div className="h-1 w-32 mx-auto bg-gradient-to-r from-green-400 to-purple-500 rounded-full"></div>
         </div>
@@ -400,7 +398,9 @@ export default function CourseCards() {
                 {/* Stats */}
                 <div className="space-y-3">
                   <div className="flex justify-between items-center p-3 bg-gray-900 bg-opacity-50 rounded-lg">
-                    <span className="text-sm text-gray-400">Reward:</span>
+                    <span className="text-sm text-gray-400">
+                      {t("Reward")}:
+                    </span>
 
                     <span
                       className={`font-bold text-lg bg-gradient-to-r ${viva.color} bg-clip-text text-transparent`}
@@ -410,7 +410,9 @@ export default function CourseCards() {
                   </div>
 
                   <div className="flex justify-between items-center p-3 bg-gray-900 bg-opacity-50 rounded-lg">
-                    <span className="text-sm text-gray-400">Sessions:</span>
+                    <span className="text-sm text-gray-400">
+                      {t("Sessions")}:
+                    </span>
 
                     <span className="font-bold text-white">
                       {viva.sessions}
@@ -421,7 +423,7 @@ export default function CourseCards() {
                     className={`flex justify-between items-center p-4 bg-gradient-to-r ${viva.color} rounded-lg shadow-lg`}
                   >
                     <span className="text-sm font-semibold text-gray-900">
-                      Total Amount:
+                      {t("Total Amount")}:
                     </span>
 
                     <span className="font-bold text-2xl text-gray-900">
@@ -440,7 +442,7 @@ export default function CourseCards() {
           <div className="relative bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl p-12 text-center border-4 border-yellow-400 shadow-2xl">
             <div className="text-7xl mb-6">🎉</div>
             <h3 className="text-4xl font-bold text-white mb-4">
-              Total Incentives
+              {t("Total Incentives")}
             </h3>
             <div className="relative">
               <p className="text-7xl font-bold bg-gradient-to-r from-yellow-400 via-orange-500 to-yellow-400 bg-clip-text text-transparent animate-pulse">
@@ -449,7 +451,7 @@ export default function CourseCards() {
               <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-orange-500 blur-2xl opacity-20"></div>
             </div>
             <p className="text-gray-400 mt-4 text-lg">
-              Complete all modules and earn maximum rewards!
+              {t("Complete Modules Info")}
             </p>
           </div>
         </div>

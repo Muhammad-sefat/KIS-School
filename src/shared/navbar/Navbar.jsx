@@ -34,8 +34,9 @@ const Navbar = () => {
 
   return (
     <header
-      className={`fixed w-full z-50 transition-all duration-300 section-padding-x ${scrolled ? "bg-theme-primary shadow-md" : "bg-theme-primary/99"
-        }`}
+      className={`fixed w-full z-50 transition-all duration-300 section-padding-x ${
+        scrolled ? "bg-theme-primary shadow-md" : "bg-theme-primary/99"
+      }`}
     >
       <div className="py-3 flex justify-between items-center">
         {/* Logo */}
@@ -55,7 +56,8 @@ const Navbar = () => {
               key={item.id}
               to={item.path}
               className={({ isActive }) =>
-                `text-sm lg:text-base font-medium transition hover:text-theme-secondary ${isActive ? "text-theme-secondary" : ""
+                `text-sm lg:text-base font-medium transition hover:text-theme-secondary ${
+                  isActive ? "text-theme-secondary" : ""
                 }`
               }
             >
@@ -86,7 +88,7 @@ const Navbar = () => {
         <div className="flex items-center gap-2 md:hidden">
           <button
             onClick={toggleLanguage}
-            className="p-1.5 rounded-lg bg-white/10 text-white border border-white/20 text-xs font-medium"
+            className="p-2 rounded-lg bg-white/10 text-white border border-white/20 text-xs font-medium"
           >
             {i18n.language === "bn" ? "EN" : "বাংলা"}
           </button>
@@ -109,8 +111,9 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       <div
-        className={`md:hidden fixed top-0 left-0 w-[260px] h-full bg-theme-primary/95 backdrop-blur-sm text-white transform transition-transform duration-300 z-40 ${mobileMenuOpen ? "translate-x-0" : "-translate-x-full"
-          }`}
+        className={`md:hidden fixed top-0 left-0 w-[260px] h-full bg-theme-primary/95 backdrop-blur-sm text-white transform transition-transform duration-300 z-40 ${
+          mobileMenuOpen ? "translate-x-0" : "-translate-x-full"
+        }`}
       >
         <div className="flex justify-between items-center px-5 py-4 border-b border-white/20">
           <h2 className="font-bold text-lg">KIS School</h2>
@@ -130,7 +133,6 @@ const Navbar = () => {
         </nav>
       </div>
     </header>
-
   );
 };
 

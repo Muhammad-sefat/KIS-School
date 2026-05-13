@@ -289,7 +289,7 @@ export default function CourseCards() {
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-indigo-900 to-purple-900 py-8 lg:py-12">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-indigo-900 to-purple-900 py-10 lg:py-12">
       <div className="section-padding-x">
         {/* Animated Header */}
         <div className="text-center mb-14">
@@ -299,7 +299,7 @@ export default function CourseCards() {
             whileInView="visible"
             viewport={{ once: true }}
             transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-            className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-500 bg-clip-text text-transparent"
+            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-500 bg-clip-text text-transparent"
           >
             {t("Our Course Plans")}
           </motion.h1>
@@ -335,19 +335,19 @@ export default function CourseCards() {
         </div>
 
         {/* Earnings Highlight */}
-        <div className="relative my-20 overflow-hidden">
+        <div className="relative my-12 lg:my-20 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-3xl opacity-60"></div>
-          <div className="relative bg-gradient-to-r from-yellow-400 to-orange-500 rounded-3xl p-8 text-center shadow-2xl">
+          <div className="relative bg-gradient-to-r from-yellow-400 to-orange-500 rounded-3xl p-6 lg:p-8 text-center shadow-2xl">
             <div className="text-6xl mb-4">💰</div>
-            <p className="text-3xl font-bold text-gray-900">
+            <p className="text-2xl lg:text-3xl font-bold text-gray-900">
               {t("Earn Per Class")}
             </p>
           </div>
         </div>
 
         {/* Viva Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-6xl font-bold mb-4 bg-gradient-to-r from-green-400 via-blue-500 to-purple-500 bg-clip-text text-transparent animate-pulse">
+        <div className="text-center mb-10 lg:mb-16">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 bg-gradient-to-r from-green-400 via-blue-500 to-purple-500 bg-clip-text text-transparent animate-pulse">
             {t("Viva Reward Structure")}
           </h2>
           <div className="h-1 w-32 mx-auto bg-gradient-to-r from-green-400 to-purple-500 rounded-full"></div>
@@ -440,12 +440,12 @@ export default function CourseCards() {
         <div className="relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 rounded-3xl blur-3xl opacity-40 animate-pulse"></div>
           <div className="relative bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl p-12 text-center border-4 border-yellow-400 shadow-2xl">
-            <div className="text-7xl mb-6">🎉</div>
-            <h3 className="text-4xl font-bold text-white mb-4">
+            <div className="text-5xl lg:text-7xl mb-6">🎉</div>
+            <h3 className="text-3xl lg:text-4xl font-bold text-white mb-4">
               {t("Total Incentives")}
             </h3>
             <div className="relative">
-              <p className="text-7xl font-bold bg-gradient-to-r from-yellow-400 via-orange-500 to-yellow-400 bg-clip-text text-transparent animate-pulse">
+              <p className="text-5xl lg:text-7xl font-bold bg-gradient-to-r from-yellow-400 via-orange-500 to-yellow-400 bg-clip-text text-transparent animate-pulse">
                 10,000 ৳
               </p>
               <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-orange-500 blur-2xl opacity-20"></div>

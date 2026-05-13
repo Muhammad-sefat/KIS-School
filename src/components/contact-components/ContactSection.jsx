@@ -126,7 +126,7 @@ const ContactSection = () => {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
-      className="section-padding-x section-padding-y bg-gradient-to-br from-gray-900 via-indigo-900 to-purple-900"
+      className="section-padding-x pt-24 pb-8 bg-gradient-to-br from-gray-900 via-indigo-900 to-purple-900"
     >
       <div className="max-w-[1600px] mx-auto">
         {/* Header Section */}
@@ -157,7 +157,11 @@ const ContactSection = () => {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: index * 0.1 }}
+              transition={{
+                duration: 0.9,
+                ease: [0.22, 1, 0.36, 1],
+                delay: index * 0.1,
+              }}
               onMouseEnter={() => setHoveredCard(index)}
               onMouseLeave={() => setHoveredCard(null)}
               className="relative group block"
@@ -195,7 +199,11 @@ const ContactSection = () => {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: index * 0.1 }}
+              transition={{
+                duration: 0.9,
+                ease: [0.22, 1, 0.36, 1],
+                delay: index * 0.1,
+              }}
               className="relative group"
             >
               <div
@@ -268,7 +276,11 @@ const ContactSection = () => {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: index * 0.1 }}
+                transition={{
+                  duration: 0.9,
+                  ease: [0.22, 1, 0.36, 1],
+                  delay: index * 0.1,
+                }}
                 onMouseEnter={() => setHoveredSocial(index)}
                 onMouseLeave={() => setHoveredSocial(null)}
                 className="relative group"

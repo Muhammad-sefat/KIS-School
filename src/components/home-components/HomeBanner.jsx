@@ -10,7 +10,7 @@ import { useTranslation } from "react-i18next";
 export const HomeBanner = () => {
   const { t } = useTranslation();
   return (
-    <div className="flex flex-col lg:flex-row items-center gap-5 section-padding-x py-4 lg:pt-8 xl:pt-12 bg-gradient-to-b from-[#1f2a61]/20 via-[#1f2a61]/10 to-white dark:from-gray-900 dark:via-gray-900 dark:to-gray-900">
+    <div className="flex flex-col lg:flex-row items-center gap-5 section-padding-x pb-4 pt-8 xl:pt-12 bg-gradient-to-b from-[#1f2a61]/20 via-[#1f2a61]/10 to-white dark:from-gray-900 dark:via-gray-900 dark:to-gray-900">
       {/* Left Content */}
       <motion.div
         className="w-full lg:w-[50%] flex flex-col items-center lg:items-start text-center lg:text-left"
@@ -25,9 +25,14 @@ export const HomeBanner = () => {
           className="w-[60px] lg:w-[100px] mt-12 lg:mt-0 dark:invert"
         />
 
-        <Title level="title80" className="leading-tight text-theme-primary dark:text-white">
+        <Title
+          level="title80"
+          className="leading-tight text-theme-primary dark:text-white"
+        >
           {t("Welcome to")}{" "}
-          <span className="text-theme-secondary">{t("Key Issue Solving School")}</span>
+          <span className="text-theme-secondary">
+            {t("Key Issue Solving School")}
+          </span>
         </Title>
 
         <Title level="title18" className="mt-2 text-gray dark:text-gray-300">

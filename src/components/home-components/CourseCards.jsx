@@ -3,125 +3,182 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { slideInBottom } from "@/animation/Animation";
 import { useTranslation } from "react-i18next";
+import CourseDetailsModal from "./CourseDetailsModal";
 
-const ENROLL_URL = "https://forms.gle/gDvnNA5KD7V5cdVQ8";
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.08,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const cardVariants = {
+  hidden: {
+    opacity: 0,
+    y: 80,
+    scale: 0.92,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.8,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+};
+
+const Card = ({ course, onClick }) => {
+  return (
+    <motion.div
+      variants={cardVariants}
+      onClick={onClick}
+      className={`relative group flex flex-col items-center justify-center p-1.5 pb-2.5 sm:p-2.5 sm:pb-3.5 bg-[#0e0e11] rounded-[24px] sm:rounded-[32px] border-2 ${course.borderClass} cursor-pointer transition-all duration-300 select-none overflow-hidden w-full`}
+    >
+      <div className="w-full">
+        {/* Subtle glow background */}
+        <div
+          className={`absolute inset-0 bg-gradient-to-br ${course.glowColor} opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none`}
+        />
+
+        {/* Inner Rounded Box */}
+        <div className="relative w-full aspect-[4/3] rounded-[16px] sm:rounded-[22px] overflow-hidden shadow-lg">
+          <div
+            className={`absolute inset-0 bg-gradient-to-b ${course.gradient} transition-transform duration-500 group-hover:scale-105`}
+          />
+
+          <div className="absolute inset-0 bg-white/[0.04] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-white/20 via-transparent to-transparent pointer-events-none" />
+
+          <div className="relative h-full w-full flex flex-col items-center justify-center p-2 select-none">
+            <span className="font-extrabold text-[11px] lg:text-sm tracking-widest text-white/80 uppercase drop-shadow-sm mb-0.5">
+              CLASS
+            </span>
+
+            <span className="font-black text-xl sm:text-2xl md:text-3xl lg:text-2xl xl:text-3xl text-white drop-shadow-[0_1.5px_3px_rgba(0,0,0,0.35)] leading-none select-none">
+              {course.classNumber}
+            </span>
+
+            <div className="absolute bottom-1 right-1 sm:bottom-1.5 sm:right-1.5 text-base sm:text-xl md:text-2xl lg:text-xl xl:text-2xl filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)] transform transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6 select-none">
+              {course.icon}
+            </div>
+          </div>
+        </div>
+
+        <p className="text-white text-[10px] sm:text-xs md:text-sm font-bold tracking-wide mt-2 text-center transition-colors duration-300 group-hover:text-yellow-400 select-none">
+          {course.classLabel}
+        </p>
+      </div>
+    </motion.div>
+  );
+};
 
 export default function CourseCards() {
   const { t } = useTranslation();
-  const [hoveredIndex, setHoveredIndex] = useState(null);
+  const [selectedCourse, setSelectedCourse] = useState(null);
+  const [isOpen, setIsOpen] = useState(false);
   const [hoveredVivaIndex, setHoveredVivaIndex] = useState(null);
+
+  const handleCardClick = (course) => {
+    setSelectedCourse(course);
+    setIsOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsOpen(false);
+    setSelectedCourse(null);
+  };
 
   const courses = [
     {
+      id: 3,
+      classNumber: "3",
       classLabel: t("Class 3"),
-      title: t("Foundation Builders"),
-      description: t("Class 3 Description"),
-      features: [
-        t("Core Grammar Rules"),
-        t("Basic Speaking Practice"),
-        t("Intro Writing Tasks"),
-      ],
-      price: `৳ 1,200`,
-      gradient: "from-sky-500 to-blue-700",
-      badge: t("Beginner"),
+      intro: t("Class 3 Intro"),
+      gradient: "from-emerald-400 to-green-600",
+      borderClass:
+        "border-emerald-500/80 hover:border-emerald-400 hover:shadow-[0_0_20px_rgba(16,185,129,0.4)]",
+      glowColor: "from-emerald-500/20 to-green-600/20",
       icon: "🌱",
     },
     {
+      id: 4,
+      classNumber: "4",
       classLabel: t("Class 4"),
-      title: t("Word Power Ignition"),
-      description: t("Class 4 Description"),
-      features: [
-        t("Vocabulary Expansion"),
-        t("Spoken Word Practice"),
-        t("Short Writing Tasks"),
-      ],
-      price: `৳ 1,200`,
-      gradient: "from-violet-500 to-purple-700",
-      badge: t("Beginner"),
-      icon: "🔤",
+      intro: t("Class 4 Intro"),
+      gradient: "from-emerald-500 to-teal-600",
+      borderClass:
+        "border-emerald-500/80 hover:border-emerald-400 hover:shadow-[0_0_20px_rgba(16,185,129,0.4)]",
+      glowColor: "from-emerald-600/20 to-teal-600/20",
+      icon: "🎒",
     },
     {
+      id: 5,
+      classNumber: "5",
       classLabel: t("Class 5"),
-      title: t("Sentence Architects"),
-      description: t("Class 5 Description"),
-      features: [
-        t("Sentence Structure"),
-        t("Speaking in Full Sentences"),
-        t("Paragraph Writing"),
-      ],
-      price: `৳ 1,400`,
-      gradient: "from-emerald-500 to-teal-700",
-      badge: t("Elementary"),
-      icon: "🏗️",
+      intro: t("Class 5 Intro"),
+      gradient: "from-teal-500 to-cyan-600",
+      borderClass:
+        "border-teal-500/80 hover:border-teal-400 hover:shadow-[0_0_20px_rgba(20,184,166,0.4)]",
+      glowColor: "from-teal-600/20 to-cyan-600/20",
+      icon: "📚",
     },
     {
+      id: 6,
+      classNumber: "6",
       classLabel: t("Class 6"),
-      title: t("Confident Communicators"),
-      description: t("Class 6 Description"),
-      features: [
-        t("Advanced Grammar Topics"),
-        t("Topic-Based Speaking"),
-        t("Feedback-Driven Writing"),
-      ],
-      price: `৳ 1,600`,
-      gradient: "from-orange-500 to-red-600",
-      badge: t("Pre-Intermediate"),
+      intro: t("Class 6 Intro"),
+      gradient: "from-sky-400 to-blue-600",
+      borderClass:
+        "border-sky-500/80 hover:border-sky-400 hover:shadow-[0_0_20px_rgba(56,189,248,0.4)]",
+      glowColor: "from-sky-500/20 to-blue-600/20",
       icon: "🗣️",
     },
     {
+      id: 7,
+      classNumber: "7",
       classLabel: t("Class 7"),
-      title: t("Expression Masters"),
-      description: t("Class 7 Description"),
-      features: [
-        t("Opinion & Story Speaking"),
-        t("Language Club Sessions"),
-        t("Creative Writing"),
-      ],
-      price: `৳ 1,800`,
-      gradient: "from-pink-500 to-rose-700",
-      badge: t("Pre-Intermediate"),
+      intro: t("Class 7 Intro"),
+      gradient: "from-blue-500 to-indigo-600",
+      borderClass:
+        "border-blue-500/80 hover:border-blue-400 hover:shadow-[0_0_20px_rgba(59,130,246,0.4)]",
+      glowColor: "from-blue-600/20 to-indigo-600/20",
       icon: "🎭",
     },
     {
+      id: 8,
+      classNumber: "8",
       classLabel: t("Class 8"),
-      title: t("Presentation Pro"),
-      description: t("Class 8 Description"),
-      features: [
-        t("Script-Free Presentations"),
-        t("5-Point Improvement Feedback"),
-        t("Structured Rewriting"),
-      ],
-      price: `৳ 2,000`,
-      gradient: "from-cyan-500 to-indigo-700",
-      badge: t("Intermediate"),
+      intro: t("Class 8 Intro"),
+      gradient: "from-indigo-500 to-purple-600",
+      borderClass:
+        "border-indigo-500/80 hover:border-indigo-400 hover:shadow-[0_0_20px_rgba(99,102,241,0.4)]",
+      glowColor: "from-indigo-600/20 to-purple-600/20",
       icon: "🎥",
     },
     {
+      id: 9,
+      classNumber: "9",
       classLabel: t("Class 9"),
-      title: t("Fluency Accelerator"),
-      description: t("Class 9 Description"),
-      features: [
-        t("Listening Comprehension"),
-        t("Speed Vocabulary Viva"),
-        t("Reflex Speaking Drills"),
-      ],
-      price: `৳ 2,200`,
-      gradient: "from-amber-500 to-yellow-600",
-      badge: t("Upper Intermediate"),
+      intro: t("Class 9 Intro"),
+      gradient: "from-amber-400 to-orange-500",
+      borderClass:
+        "border-orange-500/80 hover:border-orange-400 hover:shadow-[0_0_20px_rgba(249,115,22,0.4)]",
+      glowColor: "from-amber-500/20 to-orange-500/20",
       icon: "⚡",
     },
     {
+      id: 10,
+      classNumber: "10",
       classLabel: t("Class 10"),
-      title: t("Mastery & Beyond"),
-      description: t("Class 10 Description"),
-      features: [
-        t("Comprehensive Final Viva"),
-        t("Capstone Presentation"),
-        t("Advanced Writing Project"),
-      ],
-      price: `৳ 2,500`,
-      gradient: "from-fuchsia-500 to-purple-800",
-      badge: t("Advanced"),
+      intro: t("Class 10 Intro"),
+      gradient: "from-fuchsia-500 to-pink-600",
+      borderClass:
+        "border-fuchsia-500/80 hover:border-fuchsia-400 hover:shadow-[0_0_20px_rgba(217,70,239,0.4)]",
+      glowColor: "from-fuchsia-600/20 to-pink-600/20",
       icon: "👑",
     },
   ];
@@ -174,124 +231,10 @@ export default function CourseCards() {
     },
   ];
 
-  const row1 = courses.slice(0, 3);
-  const row2 = courses.slice(3, 6);
-  const row3 = courses.slice(6, 8);
-  const Card = ({ course, index }) => (
-    <motion.div
-      variants={slideInBottom}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.1 }}
-      transition={{
-        duration: 0.9,
-        ease: [0.22, 1, 0.36, 1],
-        delay: index * 0.1,
-      }}
-      className="relative group flex flex-col"
-    >
-      {/* Glow */}
-      <motion.div
-        whileHover={{ scale: 1.03 }}
-        transition={{ duration: 0.25 }}
-        className={`absolute inset-0 bg-gradient-to-br ${course.gradient} rounded-2xl blur-2xl opacity-40 group-hover:opacity-70 transition-opacity duration-400`}
-      />
-
-      {/* Card */}
-      <div className="relative flex flex-col h-full bg-gray-800 bg-opacity-90 backdrop-blur-sm rounded-2xl border border-gray-700 overflow-hidden shadow-xl">
-        {/* Top Bar */}
-        <div className={`h-1.5 w-full bg-gradient-to-r ${course.gradient}`} />
-
-        {/* Header */}
-        <div className="p-6 pb-4">
-          <div className="flex items-start justify-between mb-3">
-            <div>
-              <span
-                className={`inline-block text-xs font-bold px-3 py-1 rounded-full bg-gradient-to-r ${course.gradient} text-white mb-2`}
-              >
-                {course.badge}
-              </span>
-              <p className="text-gray-400 text-xs font-semibold tracking-widest uppercase">
-                {course.classLabel}
-              </p>
-            </div>
-            <div
-              className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${course.gradient} flex items-center justify-center text-3xl shadow-lg transform transition-transform duration-300 ${
-                hoveredIndex === index ? "scale-110 rotate-6" : ""
-              }`}
-            >
-              {course.icon}
-            </div>
-          </div>
-
-          <h3 className="text-2xl font-extrabold text-white mb-2 leading-tight">
-            {course.title}
-          </h3>
-          <p className="text-gray-400 text-sm leading-relaxed">
-            {course.description}
-          </p>
-        </div>
-
-        {/* Divider */}
-        <div
-          className={`mx-6 h-px bg-gradient-to-r ${course.gradient} opacity-50`}
-        />
-
-        {/* Features */}
-        <div className="px-6 py-4 flex-1">
-          <p className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-3">
-            What's Included
-          </p>
-          <ul className="space-y-2">
-            {course.features.map((feat, i) => (
-              <li
-                key={i}
-                className="flex items-center gap-3 text-sm text-gray-300"
-              >
-                <span
-                  className={`w-2 h-2 rounded-full bg-gradient-to-r ${course.gradient} shrink-0`}
-                />
-                {feat}
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Footer */}
-        <div className="px-6 pb-6 pt-3 flex items-center justify-between">
-          <div>
-            <p className="text-xs text-gray-500 mb-0.5">Monthly Fee</p>
-            <p
-              className={`text-2xl font-black bg-gradient-to-r ${course.gradient} bg-clip-text text-transparent`}
-            >
-              {course.price}
-            </p>
-            <p className="text-xs text-gray-500">12 classes / month</p>
-          </div>
-          <a
-            href={ENROLL_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`px-5 py-2.5 bg-gradient-to-r ${course.gradient} text-white font-bold rounded-full shadow-lg hover:shadow-xl transform transition-all duration-300 hover:scale-105 text-sm whitespace-nowrap`}
-          >
-            {t("Enroll Now")} →
-          </a>
-        </div>
-
-        {/* Bottom animated bar */}
-        <div
-          className={`h-0.5 bg-gradient-to-r ${course.gradient} transform transition-all duration-500 ${
-            hoveredIndex === index ? "w-full" : "w-0"
-          }`}
-        />
-      </div>
-    </motion.div>
-  );
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-indigo-900 to-purple-900 py-10 lg:py-12">
-      <div className="section-padding-x">
-        {/* Animated Header */}
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-indigo-900 to-purple-900 animate-fadeIn">
+      <div className="section-padding-x section-padding-y">
+        {/* Section Header */}
         <div className="text-center mb-14">
           <motion.h1
             variants={slideInBottom}
@@ -299,40 +242,46 @@ export default function CourseCards() {
             whileInView="visible"
             viewport={{ once: true }}
             transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-500 bg-clip-text text-transparent"
+            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-500 bg-clip-text text-transparent leading-tight max-w-4xl mx-auto"
           >
             {t("Our Course Plans")}
           </motion.h1>
           <div className="h-1 w-32 mx-auto bg-gradient-to-r from-yellow-400 to-purple-500 rounded-full mb-5" />
-          <p className="text-gray-300 text-lg max-w-2xl mx-auto">
-            {t("Course Header Description")}{" "}
-            <span className="text-yellow-400 font-semibold">
-              {t("Course Session Info")}
-            </span>
-          </p>
+
+          <motion.p
+            variants={slideInBottom}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+            className="text-gray-300 text-lg max-w-3xl mx-auto leading-relaxed"
+          >
+            {t("Course Header Description")}
+          </motion.p>
         </div>
 
-        {/* Course Modules Grid */}
-        {/* Row 1 — 3 cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
-          {row1.map((course, i) => (
-            <Card key={i} course={course} index={i} />
+        {/* Entry animation grid (2 cols on mobile, 3 on sm/md tablet, 4 on md/lg, 8 on desktop xl) */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.15 }}
+          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-8 gap-3.5 mb-16 w-full"
+        >
+          {courses.map((course) => (
+            <Card
+              key={course.id}
+              course={course}
+              onClick={() => handleCardClick(course)}
+            />
           ))}
-        </div>
+        </motion.div>
 
-        {/* Row 2 — 3 cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
-          {row2.map((course, i) => (
-            <Card key={i + 3} course={course} index={i + 3} />
-          ))}
-        </div>
-
-        {/* Row 3 — 2 cards full width (each takes 50%) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {row3.map((course, i) => (
-            <Card key={i + 6} course={course} index={i + 6} />
-          ))}
-        </div>
+        <CourseDetailsModal
+          isOpen={isOpen}
+          onClose={handleCloseModal}
+          course={selectedCourse}
+        />
 
         {/* Earnings Highlight */}
         <div className="relative my-12 lg:my-20 overflow-hidden">
@@ -380,11 +329,9 @@ export default function CourseCards() {
               <div className="relative bg-gray-800 bg-opacity-90 backdrop-blur-sm rounded-2xl p-6 border border-gray-700 transform transition-all duration-300 hover:scale-105">
                 {/* Icon */}
                 <div
-                  className={`absolute -top-4 -right-4 w-14 h-14 bg-gradient-to-br ${
-                    viva.color
-                  } rounded-full flex items-center justify-center text-2xl shadow-lg transform transition-transform duration-300 ${
-                    hoveredVivaIndex === index ? "scale-110 rotate-12" : ""
-                  }`}
+                  className={`absolute -top-4 -right-4 w-14 h-14 bg-gradient-to-br ${viva.color
+                    } rounded-full flex items-center justify-center text-2xl shadow-lg transform transition-transform duration-300 ${hoveredVivaIndex === index ? "scale-110 rotate-12" : ""
+                    }`}
                 >
                   {viva.icon}
                 </div>
@@ -438,7 +385,7 @@ export default function CourseCards() {
 
         {/* Grand Total Card */}
         <div className="relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 rounded-3xl blur-3xl opacity-40 animate-pulse"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 rounded-3xl opacity-40 animate-pulse"></div>
           <div className="relative bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl p-12 text-center border-4 border-yellow-400 shadow-2xl">
             <div className="text-5xl lg:text-7xl mb-6">🎉</div>
             <h3 className="text-3xl lg:text-4xl font-bold text-white mb-4">

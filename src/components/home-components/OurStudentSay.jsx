@@ -7,54 +7,56 @@ import { MoveLeft, MoveRight, Star, Quote } from "lucide-react";
 import { ImageProvider } from "../common/ImageProvider";
 import Title from "../common/Title";
 import { FaRegStarHalfStroke, FaStar } from "react-icons/fa6";
+import { useTranslation } from "react-i18next";
 
 const testimonials = [
   {
     id: 1,
-    text: "The English course was super helpful! I improved my speaking and writing skills within weeks. The lessons were clear and easy to follow.",
+    text: "Since joining Key Issue Solving School, Ayman's hesitation in speaking English is completely gone. Now he tries to speak in English at home too!",
     name: "Ayesha Khan",
-    title: "English Learning Student",
-    image: ImageProvider.icon,
+    title: "Ayman's Mother",
+    image:
+      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=250&h=250&fit=crop",
     rating: 5,
   },
   {
     id: 2,
-    text: "I loved how interactive the English grammar classes were. The teacher explained everything with real examples and made learning fun!",
-    name: "Rafi Ahmed",
-    title: "English Learning Student",
-    image: ImageProvider.icon1,
+    text: "The grammar classes are exceptionally well-structured. Rafi's writing vocabulary has expanded, and his school English grades improved remarkably.",
+    name: "Ahmed Shafi",
+    title: "Rafi's Father",
+    image: "https://images.unsplash.com/photo-1619380061814-58f03707f082?q=80&w=250&h=250&fit=crop",
     rating: 4.5,
   },
   {
     id: 3,
-    text: "This English course gave me confidence to speak fluently. The practice sessions and quizzes were super useful.",
+    text: "I was worried about my daughter's English pronunciation and fluency, but the live speaking practice sessions here worked like magic!",
     name: "Nusrat Jahan",
-    title: "English Learning Student",
-    image: ImageProvider.icon2,
+    title: "Fathima's Mother",
+    image: "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?q=80&w=250&h=250&fit=crop",
     rating: 4,
   },
   {
     id: 4,
-    text: "I joined to improve my IELTS preparation and it really worked! The lessons helped me polish my writing and vocabulary.",
-    name: "Sabbir Hossain",
-    title: "English Learning Student",
-    image: ImageProvider.icon3,
+    text: "The reward system is amazing! Sabbir is now eager to do his English homework on time just to earn rewards and perform well in vivas.",
+    name: "Kamrul Hassan",
+    title: "Sabbir's Father",
+    image: "https://images.unsplash.com/photo-1566492031773-4f4e44671857?q=80&w=250&h=250&fit=crop",
     rating: 4.5,
   },
   {
     id: 5,
-    text: "The best English course I've taken! The lessons are practical, and I actually enjoy learning every day now.",
-    name: "Tania Rahman",
-    title: "English Learning Student",
-    image: ImageProvider.icon,
+    text: "The 1-on-1 style care in group classes is impressive. Even though it is online, the teachers monitor Tania's camera, focus, and participation constantly.",
+    name: "Farhana Rahman",
+    title: "Tania's Mother",
+    image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=250&h=250&fit=crop",
     rating: 5,
   },
   {
     id: 6,
-    text: "Amazing experience! The English speaking sessions helped me overcome my hesitation. Highly recommend this platform.",
+    text: "KISS school has solved the most important issue — making students love studying. Saad enjoys his English sessions more than mobile games now!",
     name: "Mizanur Rahman",
-    title: "English Learning Student",
-    image: ImageProvider.icon1,
+    title: "Saad's Father",
+    image: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=250&h=250&fit=crop",
     rating: 4.5,
   },
 ];
@@ -73,29 +75,34 @@ const renderStars = (rating) => {
 };
 
 const OurStudentSay = () => {
+  const { t } = useTranslation();
+
   return (
-    <div className="section-padding-x pb-8 lg:pb-12 bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50 relative overflow-hidden">
+    <div className="section-padding-x py-8 lg:pb-12 bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50 relative overflow-hidden">
       {/* Decorative Background Elements */}
       <div className="absolute top-0 left-0 w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
 
       <div className="relative z-10">
         <div className="text-center my-8">
-          <div className="inline-block">
+          <div className="inline-block pb-4">
             <span className="px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white text-sm font-semibold rounded-full shadow-lg">
-              💬 Student Reviews
+              💬 {t("Student Reviews")}
             </span>
           </div>
           <Title
             level="title48"
             className="text-center !font-bold py-4 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent"
           >
-            What Our Students <br /> Have To Say
+            {t("What Our Students Parents Have To Say").split("<br />").map((text, i) => (
+              <React.Fragment key={i}>
+                {text}
+                {i === 0 && <br />}
+              </React.Fragment>
+            ))}
           </Title>
           <p className="text-gray-600 mt-2 w-full md:w-[55%] mx-auto text-center text-lg">
-            Our English learners share their journeys of growth and confidence.
-            From improving fluency to mastering grammar, every story inspires us
-            to keep creating better learning experiences.
+            {t("Student Description")}
           </p>
         </div>
       </div>
@@ -141,7 +148,7 @@ const OurStudentSay = () => {
 
                     {/* Testimonial Text */}
                     <p className="md:text-[17px] py-4 text-gray-700 font-medium leading-relaxed">
-                      "{item.text}"
+                      "{t(`Testimonial ${item.id} Text`)}"
                     </p>
                   </div>
 
@@ -158,9 +165,9 @@ const OurStudentSay = () => {
                     </div>
                     <div>
                       <h2 className="font-bold md:text-lg text-gray-800 group-hover:text-blue-600 transition-colors">
-                        {item.name}
+                        {t(`Testimonial ${item.id} Name`)}
                       </h2>
-                      <p className="text-gray-500 text-sm">{item.title}</p>
+                      <p className="text-gray-500 text-sm">{t(`Testimonial ${item.id} Title`)}</p>
                     </div>
                   </div>
 

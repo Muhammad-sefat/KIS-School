@@ -1,6 +1,7 @@
 import Accordian from "@/components/home-components/Accordian";
 import CourseCards from "@/components/home-components/CourseCards";
 import { HomeBanner } from "@/components/home-components/HomeBanner";
+import ImageGallary from "@/components/home-components/ImageGallary";
 import OurInovation from "@/components/home-components/OurInovation";
 import OurInstructor from "@/components/home-components/OurInstructor";
 import OurRating from "@/components/home-components/OurRating";
@@ -13,13 +14,14 @@ const Home = () => {
   return (
     <>
       <ScrollRestoration />
-      <HomeBanner />
+      {/* <HomeBanner /> */}
       {/* <OurRating /> */}
       <CourseCards />
       {/* <OurInovation /> */}
       {/* <ServiceCard /> */}
       {/* <OurInstructor /> */}
-      {/* <OurStudentSay /> */}
+      <ImageGallary />
+      <OurStudentSay />
       <Accordian />
     </>
   );
